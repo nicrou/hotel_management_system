@@ -1,0 +1,13 @@
+<div class="row js-chart-controls chart-controls">
+  <%= render partial: "chart_controls" %>
+</div>
+
+<div class="row js-chart-container chart-container">
+  <%= render partial: "form" %>
+</div>
+
+<%= javascript_tag do %>
+  charts.initControls();
+  charts.initIndex();
+  $(".js-chart-container>form").submit();
+<% end %>

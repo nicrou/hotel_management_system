@@ -1,0 +1,42 @@
+<div class="custom-navbar">
+  <ul class="nav nav-pills">
+    <li class="active">
+        <a href='#'>
+            <%= params[:action] %>
+        </a>
+    </li>
+    <li><a href='#'><%= params[:controller].capitalize %></a></li>
+    <li class="dropdown">
+      <a href="#" data-toggle="dropdown" class="dropdown-toggle">Actions <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+        <li><%= link_to categories_path do %>Categories<% end %></li>
+        <li><%= link_to rooms_path do %>Rooms<% end %></li>
+        <li class="divider"></li>
+        <li><%= link_to profiles_path do %>Profiles<% end %></li>
+        <li><%= link_to customers_path do %>Customers<% end %></li>
+        <li class="divider"></li>
+        <li><%= link_to bookings_search_path do %>New Booking<% end %></li>
+        <li><%= link_to bookings_path do %>Bookings<% end %></li>
+        <li><%= link_to timetables_index_path do %>Timetables<% end %></li>
+        <li class="divider"></li>
+        <li><%= link_to invoices_path do %>Invoices<% end %></li>
+      </ul>
+    </li>
+    <li class="dropdown pull-right">
+        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+          <% if user_signed_in? %><%= current_user.profile.forename %> <%= current_user.profile.surname %><% end %> <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li><%= link_to files_index_path do %><i class="fa fa-picture-o"></i> Manage Files<% end %></li>
+            <li><%= link_to contents_path do %><i class="fa fa-font"></i> Manage Content<% end %></li>
+            <li><%= link_to components_path do %><i class="fa fa-cog"></i> Manage Components<% end %></li>
+            <li><%= link_to themes_path do %><i class="fa fa-magic"></i> Manage Themes<% end %></li>
+            <li class="divider"></li>
+            <li><%= link_to charts_index_path do %><i class="fa fa-line-chart"></i> Charts<% end %></li>
+            <li class="divider"></li>
+            <% if user_signed_in? %>
+              <li><%= link_to('Logout', destroy_user_session_path, :method => :delete, class: "fa fa-sign-out") %></li>
+            <% end %>
+        </ul>
+     </li>
+  </ul>
+</div>

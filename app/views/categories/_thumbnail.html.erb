@@ -1,0 +1,9 @@
+<% if category.file_pathname.present? %>
+  <% directory = category.file_pathname %>
+  <% if File.directory?(File.join('public', directory)) %>
+    <% image_name = File.basename(Dir[File.join('public', directory, "*.[a-z][a-z][a-z]")].sort_by{ |f| File.mtime(f) }.last) %>
+    <div class="thumbnail-box" style="background-image: url('/<%= category.file_pathname %>/<%= image_name %>');"></div>
+  <% end %>
+<% else %>
+  <div class="thumbnail-box"></div>
+<% end %>

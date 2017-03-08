@@ -1,0 +1,21 @@
+<% price = booking.price %>
+<% total = price * booking.nights %>
+
+<% if booking.discount.present? && booking.discount != 0 %>
+  <% discounted_price = price - (price * booking.discount) / 100 %>
+  <% discounted_total = discounted_price * booking.nights %>
+
+  <td><span class="discount"> <%= (booking.discount).round(0) %></span></td>
+  <td>
+    <span class="price stack"><%= number_to_euro(price) %></span>
+    <span class="offer"><%= number_to_euro(discounted_price) %></span>
+  </td>
+  <td>
+    <span class="stack price"><%= number_to_euro(total) %></span>
+    <span class="offer"><%= number_to_euro(discounted_total) %></span>
+  </td>
+<% else %>
+    <td></td>
+    <td><%= number_to_euro(price) %></td>
+    <td><%= number_to_euro(total) %></td>
+<% end %>

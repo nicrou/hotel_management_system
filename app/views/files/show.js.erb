@@ -1,0 +1,10 @@
+$("#dir_content").html("<%= escape_javascript(render partial: "directory", locals: { directory: @active_dir }) %>");
+
+$(function(){
+  if ($("#dir-location input").val() != ""){
+    $("a#return").removeClass("disabled");
+  }
+  else {
+    $("a#return").addClass("disabled");
+  }
+})

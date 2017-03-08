@@ -1,0 +1,58 @@
+<%= form_for @room, remote: true do |f| %>
+
+  <% if @room.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@room.errors.count, "error") %> prohibited
+        this room from being saved:
+      </h2>
+      <ul>
+        <% @room.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-primary">
+      <div class="panel-heading" role="tab" id="info-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#info-collapse" aria-expanded="true" aria-controls="info-collapse"><i class="fa fa-info"></i>Room Info</a>
+      </div>
+      <div id="info-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="info-heading">
+        <div class="panel-body">
+          <div class="fields">
+            <div class="field">
+              <%= f.label :category_id %>
+              <%= f.select :category_id, options_from_collection_for_select(@categories, 'id', 'title'), {},
+              class: "selectpicker", autocomplete: "off", placeholder: "Type", 'data-width' => "100%", 'data-header' => "Select Type", 'data-live-search' => "true" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :building %>
+              <%= f.text_field :building %>
+            </div>
+            <div class="field">
+              <%= f.label :floor%>
+              <%= f.number_field :floor %>
+            </div>
+            <div class="field">
+              <%= f.label :number %>
+              <%= f.number_field :number, min: 1 %>
+            </div>
+            <div class="field">
+              <%= f.label :notes %>
+              <%= f.text_area :notes, class: "text" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= javascript_tag do %>
+  /*$("button.swal2-confirm").click(function(event){
+    $(".swal2-content form").submit();
+  })*/
+<% end %>

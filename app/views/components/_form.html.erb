@@ -1,0 +1,43 @@
+<div class="row new-content">
+  <div class="steps">
+    <div class="progress-container">
+      <ul class="progress-indicator">
+        <li class="completed"> <span class="bubble">1</span> Step 1. </li>
+          <li> <span class="bubble">2</span> Step 2. </li>
+      </ul>
+    </div>
+
+    <% if @component.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@component.errors.count, "error") %> prohibited
+        this component from being saved:
+      </h2>
+      <ul>
+        <% @component.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for(@component) do |f| %>
+  <!-- fieldsets -->
+  	<fieldset>
+      <%= render partial: "step_1", locals: { f: f, component: @component } %>
+      <%= link_to components_path, class: "btn btn-default" do %><i class="fa fa-arrow-left"></i> Previous<% end %>
+      <button class="btn btn-primary next" value="Next" type="button">Next <i class="fa fa-arrow-right"></i></button>
+    </fieldset>
+    <fieldset>
+      <%= render partial: "step_2", locals: { f: f, component: @component } %>
+      <button class="btn btn-default previous" value="Previous" type="button"><i class="fa fa-arrow-left"></i> Previous</button>
+      <button class="btn btn-primary done" value="Done" type="submit">Done <i class="fa fa-check"></i></button>
+    </fieldset>
+  </div>
+  <% end %>
+</div>
+
+<%= javascript_tag do %>
+ steps.initControls();
+ contents.initControls();
+<% end %>

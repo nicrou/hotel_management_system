@@ -1,0 +1,3 @@
+<% @social_media.each do |s| %>
+  <div class="pulsate-animation"><a href='<%= s.content %>' target="_blank"><%= image_tag("icons/social_media/128x128/#{s.title.downcase}.png") %></a></div>
+<% end %>

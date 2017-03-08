@@ -1,0 +1,80 @@
+<%= form_for @category, remote: true do |f| %>
+
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@category.errors.count, "error") %> prohibited
+        this category from being saved:
+      </h2>
+      <ul>
+        <% @category.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <% if params[:action] == 'edit' %>
+      <%= render partial: 'dropzone_panel', locals: { category: @category } %>
+    <% end %>
+    <div class="panel panel-primary">
+      <div class="panel-heading" role="tab" id="info-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#info-collapse" aria-expanded="true" aria-controls="info-collapse"><i class="fa fa-info"></i>Category Info</a>
+      </div>
+      <div id="info-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="info-heading">
+        <div class="panel-body">
+          <div class="fields">
+            <div class="field">
+              <%= f.label :title, class: "required" %>
+              <%= f.select :title, options_for_select(['Guest Room', 'Single Room', 'Double Room', 'Twin Room', 'Interconnecting Rooms', 'Adjoining Rooms', 'Dublex', 'Cabana', 'Studio Room', 'Parlor', 'Lanai', 'Efficiency Room', 'Hospitality Room', 'Suite Room', 'King Bedcategory', 'Queen Bedcategory'], selected: @category.title), {},
+               class: "selectpicker", autocomplete: "off", placeholder: "Type", 'data-width' => "100%", 'data-header' => "Select Type", 'data-live-search' => "true" %>
+            </div>
+            <div class="field">
+              <%= f.label :subtitle %>
+              <%= f.text_field :subtitle %>
+            </div>
+            <div class="field">
+              <%= f.label :description %>
+              <%= f.text_area :description, class: "text-area" %>
+            </div>
+            <div class="field">
+              <%= f.label :tags %>
+              <%= f.text_field :tags, class: "tokenize" %>
+            </div>
+            <% unless params[:action] == 'edit' %>
+              <div class="field">
+                <%= f.label :rooms_count, value: "Rooms Quantity", class: "required" %>
+                <%= f.number_field :rooms_count, min: 1, step: 1 %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="pricing-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#pricing-collapse" aria-expanded="true" aria-controls="pricing-collapse"><i class="fa fa-eur"></i>Pricing</a>
+      </div>
+      <div id="pricing-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="pricing-heading">
+        <div class="panel-body">
+          <div class="fields">
+            <div class="field">
+              <%= f.label :price, class: "required" %>
+              <div class="input-group">
+                <%= f.number_field :price, class: "currency", min: 0, step: 0.01 %><span class="input-group-addon">€</span>
+              </div>
+            </div>
+             <div class="field">
+              <%= f.label :discount %>
+              <div class="input-group">
+                <%= f.number_field :discount, class: "percentage", min: 0, max: 100, step: 0.1 %><span class="input-group-addon">%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

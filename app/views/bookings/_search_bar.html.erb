@@ -1,0 +1,25 @@
+<% if current_user.present? %>
+<nav class="search-bar navbar navbar-default">
+	<div class="multi-input-group">
+		<%= text_area_tag 'start_date', nil, class: "js-datepicker js-start-date form-control", placeholder: "Start Date", title: "Start Date" %><%= text_area_tag 'end_date', nil, class: "js-datepicker js-end-date form-control", placeholder: "End Date", title: "End Date" %><span class="js-search btn btn-default btn-search" type="button"><i class="fa fa fa-search"></i></span><button class="js-confirm-booking btn btn-success" type="button"><i class="fa fa fa-shopping-cart"></i> Checkout</button>
+  </div>
+</nav>
+<% else %>
+	<nav class="search-bar navbar navbar-default">
+		<div class="container">
+			<div class="navbar-header navbar-left">
+				<div class="left-group">
+					<%= text_area_tag 'start_date', nil, class: "js-datepicker datepicker js-start-date start-date nav-control", placeholder: "Start Date", title: "Start Date", cols: "10", rows: "2" %>
+					<%= link_to hotel_index_path do %>
+			      <span class="btn btn-default btn-home" title="Hotel Page"><i class="fa fa-home"></i></span>
+			    <% end %>
+				</div>
+				<div class="right-group">
+					<%= text_area_tag 'end_date', nil, class: "js-datepicker datepicker js-end-date end-date nav-control", placeholder: "End Date", title: "End Date", cols: "10", rows: "2" %>
+					<span class="js-search btn btn-default btn-search" type="button"><i class="fa fa-1x fa-search"></i></span>
+				</div>
+				<button class="js-confirm-booking confirm-booking btn btn-success" type="button"><i class="fa fa-4x fa-shopping-cart"></i> Checkout</button>
+	    </div>
+		</div>
+	</nav>
+<% end %>

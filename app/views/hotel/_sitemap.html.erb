@@ -1,0 +1,21 @@
+<div>
+  <div class="sitemap">
+    <h4>Sitemap</h4>
+    <a href="#">Index</a>
+  	<% @navbar.each do |nav| %>
+  		| <a><%= nav.title %></a>
+  	<% end %>
+  </div>
+  <div class="useful-links">
+    <h4>Useful Links</h4>
+    <a href="#">Whatever 1</a> |
+    <a href="#">Whatever 2</a> |
+    <a href="#">Whatever 3</a>
+  </div>
+  <div class="locales">
+    <% s = Content.where(is_index: true).pluck(:locale).uniq %>
+    <%= select_tag 'locale', options_for_select(s, selected: params[:locale]),
+        class: "js-selectpicker dropup element locale show-tick left", data: { initialized: 0 }, autocomplete: "off", placeholder: "Type",
+				'data-width' => '112px', 'data-header' => "Locale" %>
+  </div>
+</div>

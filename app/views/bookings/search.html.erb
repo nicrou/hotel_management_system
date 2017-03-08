@@ -1,0 +1,8 @@
+<%= render partial: "search_bar" %>
+<div class="row deck">
+  <%= render partial: "available_rooms_deck", locals: { description: @categories } %>
+</div>
+
+<%= javascript_tag do %>
+  bookings.initControls();
+<% end %>

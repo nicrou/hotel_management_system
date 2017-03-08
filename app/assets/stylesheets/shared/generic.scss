@@ -1,0 +1,83 @@
+.block {
+  display: block;
+}
+
+.required:after {
+  content: ' *';
+  color: red;
+}
+
+.thumbnail-box {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 270px;
+  width: 100%;
+  border-radius: 4px;
+  background-image: url('/image-not-available.jpg')
+}
+
+.tag-container {
+  border-radius: 4px;
+  padding: 4px;
+  width: 100%;
+  min-height: 34px;
+
+  text-align: center;
+
+  font-size: 16px;
+  color: #555555;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  label.tag {
+    padding: 4px;
+    margin: 4px;
+    border-radius: 4px;
+    font-weight: normal;
+    i {
+      padding-right: 4px;
+    }
+  }
+}
+
+#error_explanation {
+  color: #a94442;
+  background-color: #f2dede;
+  border: 1px solid #f2dede;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  ul{
+    list-style-type: none;
+    padding-right: 40px;
+  }
+}
+
+.wrap-panel-alert {
+  margin: 2% 8% 2% 8%;
+  text-align: center;
+  a.alert {
+    padding: 0px 4px 2px 4px;
+  }
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+td>a{
+  :nth-child(1) {
+    margin-right: 4px;
+  }
+  i:nth-child(2) {
+    margin-left: 4px;
+  }
+}
+
+.alert-dismissable .close, .alert-dismissible .close {
+  top: -14px !important;
+  right: -28px !important;
+}

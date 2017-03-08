@@ -1,0 +1,34 @@
+.price {
+  text-decoration: line-through;
+  color: #d9534f;
+  font-weight: bold;
+}
+
+.discount {
+  color: #eea236;
+  &:before {
+    content: '-'
+  }
+  &:after {
+    color: #000;
+    content: ' %'
+  }
+}
+
+.offer {
+  color: #5cb85c;
+  font-weight: bold;
+}
+
+.value .stack { display: inline; }
+.stack {
+  display: block;
+  font-size: 12px
+}
+
+.total {
+  color: #5cb85c;
+  border: 1px solid #5cb85c;
+  border-radius: 4px;
+  padding: 8px;
+}

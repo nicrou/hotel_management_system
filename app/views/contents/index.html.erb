@@ -1,0 +1,20 @@
+<div class="row model">
+  <%= render partial: "bootstrap_table" %>
+</div>
+
+<div class="js-bootstrap-table-toolbar bootstrap-table-toolbar">
+  <%= link_to new_content_path(:is_module => false), class: "btn btn-default" do %><i class="fa fa-font"> +</i><% end %>
+</div>
+
+<div class="wrap-panel-alert">
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! The purpose of these CMS features is to be used by people without any prior knowledge of web technologies whatsoever, yet allowing them to develop a decent UX with minimum effort </br>
+          Simply following the conventions along with the <%= link_to themes_path, class: "alert alert-info" do %><span>Themes</span><% end %> can result in a beautiful multi-language SPA without any coding.
+  </div>
+  <div class="alert alert-warning alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Warning! The footer's/header's internalization can be easily done using I18n gem and appropriate symbols as per rails documentation. </br>
+             Initially I intented to develop more sophisticated tools and to at least be able to modify further the navbar as well as the footer but it actually beats the purpose of this project and I need to close it already. </br></br>
+  </di>
+</div>

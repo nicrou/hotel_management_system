@@ -1,0 +1,42 @@
+<% @timetables.each do |timetable| %>
+  <table class="timetable js-bootstrap-table" data-search="true" cellspacing="0">
+    <% @first_day = @month.beginning_of_month %>
+    <% @last_day = @month.end_of_month %>
+    <thead>
+      <tr>
+        <th data-halign="center" data-align="center" class="tm">#</th>
+        <th data-halign="center" data-align="center" class="tm"><%= link_to category_path(timetable.first.room.category), remote: true do %><%= "#{timetable.first.room.category.title}" %><% end %></th>
+        <% (@first_day..@last_day).each do |d| %>
+          <th data-halign="center" data-align="center" class="tm"><%= "#{d.day.to_s}" %></th>
+        <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% timetable.each_with_index do |i, index| %>
+
+        <% @booking_index = 0 %>
+        <% if i.bookings[@booking_index].present? %>
+          <% if i.bookings[@booking_index].start_date.month != @first_day.month %>
+            <!-- Managing booking that are split between two months. For example ([ Tue, 03 Jan 2017 ] - [ Sun, 01 Jan 2017 ] - 1).to_i = 3 aka three days into the new month. -->
+            <% @nights = (i.bookings[@booking_index].end_date - i.bookings[@booking_index].end_date.beginning_of_month).to_i %>
+            <!-- @carry is used as a flag to know that remaining nights have already been set from the previous month. -->
+            <% @booking_flag = false %>
+            <!-- @booking_flag = true is a flag set when cells are iterating a booking. -->
+            <% @carry = true %>
+          <% else %>
+            <% @carry = false %>
+            <% @booking_flag = false %>
+          <% end %>
+        <% end %>
+
+        <tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+          <td><%= index %></td>
+          <td class="tm"><%= link_to room_path(i.room), remote: true do %><%= "#{i.room.building}:#{i.room.floor}:#{i.room.number}" %><% end %></td>
+            <%= render partial: "render_row", locals: { bookings: i.bookings, index: index } %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <hr>
+<% end %>

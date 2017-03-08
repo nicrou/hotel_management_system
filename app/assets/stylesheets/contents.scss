@@ -1,0 +1,61 @@
+.row.new-content, .row.new-component {
+  height:100%;
+  text-align: center;
+  fieldset {
+    //margin: 20px auto;
+  }
+
+  .step-1, .step-2, .step-3, .step-4 {
+    text-align: center;
+    .fields {
+      margin: 20px auto;
+      min-width: 208px;
+      max-width: 840px;
+      .field {
+        width: 40%;
+        text-align: center;
+        .bootstrap-select>button.dropdown-toggle {
+          margin-bottom: 10px;
+        }
+        .bootstrap-select.btn-group .dropdown-toggle .filter-option {
+          text-align: center;
+        }
+        input {
+          display: block;
+        }
+        ul.wysihtml5-toolbar {
+          min-width: 208px;
+          margin-bottom: 10px;
+          li {
+            float: none;
+            display: inline;
+            text-align: center;
+            a.btn {
+              margin-top: 8px;
+            }
+          }
+        }
+        body.wysihtml5-editor {
+          text-align: justify;
+          max-width: 720px;
+        }
+      }
+    }
+  }
+
+  .step-3>.fields>.field { width: auto; }
+}
+
+.progress-container {
+  margin: 20px auto;
+  width: 520px;
+}
+
+@media only screen and (max-width: 768px) {
+  .progress-container {
+    width: 224px;
+  }
+  .step-1, .step-2 {
+    //width: 212px;
+  }
+}

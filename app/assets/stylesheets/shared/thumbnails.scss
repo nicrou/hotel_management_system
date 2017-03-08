@@ -1,0 +1,58 @@
+.row.deck {
+  margin-bottom: 4%;
+  .thumbnail{
+    margin: 2%;
+    .discount {
+      display: block;
+      text-align: right;
+    }
+    .thumbnail-box {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 270px;
+      width: 100%;
+      border-radius: 4px;
+    }
+
+    .thumbnail-title {
+      display: inline-block;
+    }
+
+    .thumbnail-subtitle {
+
+    }
+
+    .thumbnail-description {
+
+    }
+
+    .thumbnail-items {
+      margin-top: 4%;
+      margin-bottom: 4%;
+    }
+
+    .thumbnail-button {
+
+    }
+
+    .list-group .list-group-item {
+      text-align: center;
+      .price { display: block }
+      .offer { display: block; font-size: 24px }
+      .quantity {
+        padding: 4px;
+        border: 2px solid #5CB85C;
+        color: #000;
+        border-radius: 20px;
+        width: 32px;
+      }
+    }
+  }
+}
+
+/*@media only screen and (max-width: 768px) {
+  .row.deck {
+    margin-top: 280px;
+  }
+}*/

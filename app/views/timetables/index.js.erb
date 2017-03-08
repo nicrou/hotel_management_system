@@ -1,0 +1,4 @@
+$(".row.timetable-container").html("<%= escape_javascript(render "bootstrap_table") %>");
+$(".js-month-label").text('<%= "#{@month.strftime("%B %Y")}" %>');
+
+initTimetable();

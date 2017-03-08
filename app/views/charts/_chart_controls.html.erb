@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="js-item-selection item-selection">
+    <div class="btn-group">
+      <button class="btn btn-default dropdown-toggle" type="button" id="dropdown-menu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+        <span class="js-dropdown-placeholder"></span>
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" aria-labelledby="dropdown-menu">
+        <li class="dropdown-header">Bookings</li>
+        <li class="js-action active" data-action=1><a>Count</a></li>
+        <li class="js-action" data-action=2><a>Income</a></li>
+        <li class="divider"></li>
+        <li class="dropdown-header">Invoices</li>
+        <li class="js-action" data-action=3><a>Count</a></li>
+        <li class="js-action" data-action=4><a>Income</a></li>
+      </ul>
+      <button class="btn btn-default help-btn" type="button"><i class="fa fa-question-circle"></i></button>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="js-mode-selection mode-selection">
+    <input type="checkbox" data-mode="annual" checked
+      data-off-title="Monthly" data-on-title="Annual" data-switch-always
+      data-off-active-cls="btn-primary" data-on-active-cls="btn-primary"
+      data-off-label="false" data-on-label="false"
+      data-off-icon-cls="fa fa-calendar-o" data-on-icon-cls="fa fa-calendar" >
+  </div>
+  <div class="js-chart-selection-menu chart-selection-menu btn-group">
+    <button class="btn btn-primary active" data-chart="line" data-placement="left" title="Line Chart" type="button"><i class="fa fa-line-chart"></i></button>
+    <button class="btn btn-default" data-chart="bar" data-placement="left" title="Bar Chart" type="button"><i class="fa fa-bar-chart"></i></button>
+    <button class="btn btn-default" data-chart="pie" data-placement="left" title="Pie Chart" type="button"><i class="fa fa-pie-chart"></i></button>
+    <button class="btn btn-default" data-chart="doughnut" data-placement="left" title="Dougnut Chart" type="button"><i class="fa fa-circle-o"></i></button>
+  </div>
+
+  <div class="js-select-category-wrap select-category-wrap">
+    <%= select_tag 'category', options_for_select(@category_options, selected: @category),
+        class: "js-selectpicker show-tick left", autocomplete: "off", placeholder: "Type", 'data-width' => '224px', 'data-header' => "Select Type", 'data-live-search' => "true" %>
+  </div>
+  <h3 class="title js-year">
+    <span class="fa-caret js-previous-year"><i class="fa fa-caret-left"></i></span>
+    <label><%= @control.date.strftime("%Y") %></label>
+    <span class="fa-caret js-next-year"><i class="fa fa-caret-right fa-caret"></i></span>
+  </h3>
+  <h3 class="title js-month">
+    <span class="fa-caret js-previous-month"><i class="fa fa-caret-left"></i></span>
+    <label><%= @control.date.strftime("%B %Y") %></label>
+    <span class="fa-caret js-next-month"><i class="fa fa-caret-right fa-caret"></i></span>
+  </h3>
+</div>

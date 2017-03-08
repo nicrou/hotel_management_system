@@ -1,0 +1,35 @@
+<div class="row timetable-controls">
+  <h3 class="title">
+    <span class="fa-caret js-previous"><i class="fa fa-caret-left"></i></span>
+    <label class="month-label js-month-label"><%= "#{@month.strftime("%B %Y")}" %></label>
+    <input name="month" type="date" class="hidden js-month">
+    <span class="fa-caret js-next"><i class="fa fa-caret-right fa-caret"></i></span>
+  </h3>
+  <!--<div class="rearange-wrap btn-group pull-left">
+    <a href="#" class="btn btn-default">Rearange</a>
+    <a href="#" class="btn btn-default"><i class="fa fa-question-circle"></i></a>
+  </div>-->
+  <div class="select-category-wrap pull-right">
+    <% s = Category.find_each.pluck(:title) %>
+    <% s << "All" %>
+    <%= select_tag 'category', options_for_select(s, selected: @category),
+        class: "js-selectpicker show-tick left", data: { initialized: 0 }, autocomplete: "off", placeholder: "Type", 'data-width' => '224px', 'data-header' => "Select Type", 'data-live-search' => "true" %>
+  </div>
+</div>
+<div class="row timetable-container">
+  <%= render partial: "bootstrap_table" %>
+</div>
+
+<div class="wrap-panel-alert">
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! Use the selectpicker on the right top corner to change the displayed category of the timetable.</br>
+          Notice that there is also an [ All ] option that displays a timetable for each category. However it's deprecated since it is considerably slower.</br>
+          In the future I may implement a selection control to select any combination of categories.
+  </div>
+</div>
+
+<%= javascript_tag do %>
+    initTimetable();
+    initEvents(Date.now());
+<% end %>

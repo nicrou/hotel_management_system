@@ -1,0 +1,58 @@
+<table class="js-bootstrap-table" data-show-columns="true"
+                                  data-search="true"
+                                  data-show-refresh="true"
+                                  data-show-toggle="true"
+                                  data-pagination="true">
+    <thead>
+      <tr>
+          <th data-halign="center" data-align="center" data-sortable="true" >Title</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Position</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Type</th>
+          <th data-halign="center" data-align="center" data-visible="false" >Image folder</th>
+          <th data-halign="center" data-align="center" data-visible="true" >View</th>
+          <th data-halign="center" data-align="center" data-visible="true" >Edit</th>
+          <th data-halign="center" data-align="center" data-visible="true" >Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @components.each_with_index do |component, index| %>
+        <tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+          <td><%= component.title %></td>
+          <td><%= component.position %></td>
+          <% if component.is_slider == true %>
+            <td><span title="Slider"><i class="fa fa-picture-o" title="Slider"></i></span></td>
+          <% elsif component.is_map == true %>
+            <td><span title="Map"><i class="fa fa-map" title="Map"></i></span></td>
+          <% elsif component.is_social_link == true %>
+            <% case component.title %>
+            <% when "Facebook" %>
+              <td><i class="fa fa-facebook-official" title="Facebook"></i></td>
+            <% when "Twitter" %>
+              <td><i class="fa fa-twitter" title="Twitter"></i></td>
+            <% when "Google-plus" %>
+              <td><i class="fa fa-google-plus" title="Google-plus"></i></td>
+            <% when "Pinterest" %>
+              <td><i class="fa fa-pinterest" title="Pinterest"></i></td>
+            <% when "Youtube" %>
+              <td><i class="fa fa-youtube" title="Youtube"></i></td>
+            <% else %>
+              <td><i class="fa fa-at"></i></td>
+            <% end %>
+
+          <% else %>
+            <td><span title="Component"><i class="fa fa-cog"></i></span></td>
+          <% end %>
+
+          <td><%= component.collection_directory %></td>
+
+          <td class="show-trigger"><%= link_to component_path(component), remote: true do %><i class="fa fa-eye"></i><% end %></td>
+          <% if component.is_editable == true %>
+            <td class="update-trigger"><%= link_to edit_component_path(component) do %><i class="fa fa-pencil"></i><% end %></td>
+          <% else %>
+            <td></td>
+          <% end %>
+          <td class="delete-trigger"><%= link_to component_path(component), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

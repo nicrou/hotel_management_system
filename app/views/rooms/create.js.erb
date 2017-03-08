@@ -1,0 +1,10 @@
+swal({
+  type: 'success',
+  title: 'Success!',
+  html: 'Room <%= @room.building %><%= @room.floor %><%= @room.number %> has been created.',
+  showCloseButton: true,
+  confirmButtonText: '<i class="fa fa-check"></i>'
+})
+
+$(".row").html('<%= escape_javascript(render "bootstrap_table") %>');
+$(".js-bootstrap-table").bootstrapTable();

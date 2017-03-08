@@ -1,0 +1,17 @@
+<section class="row">
+	<%= render partial: "navbar" %>
+</section>
+
+<div class="index-container">
+	<section class="js-content content">
+		<% if @content.blank? %>
+		  <%= render partial: "content_error" %>
+		<% else %>
+			<%= render partial: "content", locals: { object: @content } %>
+		<% end %>
+	</section>
+</div>
+
+<footer class="row">
+		<%= render partial: "footer" %>
+</footer>

@@ -1,0 +1,38 @@
+<table class="js-bootstrap-table" data-show-columns="true"
+                                  data-search="true"
+                                  data-show-refresh="true"
+                                  data-show-toggle="true"
+                                  data-pagination="true">
+    <thead>
+      <tr>
+        <!-- <th data-field="state" data-checkbox="true"></th> -->
+        <th data-halign="center" data-align="center" data-sortable="true" >Code</th>
+        <th data-halign="center" data-align="center" data-sortable="true" >Is Paid</th>
+        <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Customer Identification</th>
+        <th data-halign="center" data-align="center" data-sortable="true" >Customer</th>
+        <th data-halign="center" data-align="center" data-sortable="true" >Edit Customer</th>
+        <th data-halign="center" data-align="center" data-visible="true" >View</th>
+        <th data-halign="center" data-align="center" data-visible="true" >Edit</th>
+        <th data-halign="center" data-align="center" data-visible="true" >Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @invoices.each_with_index do |invoice, index| %>
+          <tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+            <td><%= invoice.code %></td>
+            <td><% if invoice.is_paid == true %>
+                <span class="text-success">Yes</span>
+              <% else %>
+                <span class="text-danger">No</span>
+              <% end %>
+            </td>
+            <td><%= "#{invoice.customer.identification_credential}" %></td>
+            <td class="show-customer-trigger"><%= link_to customer_path(invoice.customer), remote: true do %><%= "#{invoice.customer.forename} #{invoice.customer.surname}" %><% end %></td>
+            <td class="update-customer-trigger"><%= link_to edit_customer_path(invoice.customer), remote: true do %><i class="fa fa-address-book-o"></i><i class="fa fa-pencil"></i><% end %></td>
+            <td class="show-trigger"><%= link_to invoice_path(invoice), remote: true do %><i class="fa fa-eye"></i><% end %></td>
+            <td class="update-trigger"><%= link_to edit_invoice_path(invoice), remote: true do %><i class="fa fa-pencil"></i><% end %></td>
+            <td class="delete-trigger"><%= link_to invoice_path(invoice), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

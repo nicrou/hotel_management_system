@@ -1,0 +1,60 @@
+.row.chart-controls {
+  .item-selection {
+    margin: 24px auto 9px auto;
+    text-align: center;
+    button:first-child {
+      width: 182px;
+      border-top-right-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+    button:last-child {
+      border-top-left-radius: 0px;
+      border-bottom-left-radius: 0px;
+    }
+    ul{
+      width: 200px;
+      li>a {
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  text-align: right;
+  .mode-selection {
+    margin-bottom: 24px;
+    .btn-group a.btn {
+      width: 56px;
+    }
+  }
+  .flag-selection {
+    margin-bottom: 24px;
+    .btn-group a.btn {
+      width: 56px;
+    }
+  }
+  .chart-selection-menu.btn-group {
+    margin-bottom: 24px;
+    .btn {
+      width: 56px;
+    }
+  }
+  .select-category-wrap {
+    min-height: 42px;
+    display: block;
+    text-align: right;
+  }
+}
+
+.row.chart-controls {
+  .title>label {
+    margin-right: 8px;
+    margin-left: 8px;
+    min-width: 160px;
+  }
+  .title>span.fa-caret {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

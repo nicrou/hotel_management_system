@@ -1,0 +1,64 @@
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-primary">
+      <div class="panel-heading" role="tab" id="info-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#info-collapse" aria-expanded="true" aria-controls="info-collapse"><i class="fa fa-info"></i>Booking Info</a>
+      </div>
+      <div id="info-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="info-heading">
+        <div class="panel-body">
+          <div class="fields">
+            <div class="field">
+              <label>Room</label>
+              <input value="<%= "#{@booking.room.building}:#{@booking.room.floor}:#{@booking.room.number}" %>" disabled >
+            </div>
+            <div class="field">
+              <label>Invoice</label>
+              <input value="<%= "#{@booking.invoice.code}" %>" disabled >
+            </div>
+            <div class="field">
+              <label>Start Date</label>
+              <input value="<%= @booking.start_date %>" disabled >
+            </div>
+            <div class="field">
+              <label>End Date</label>
+              <input value="<%= @booking.start_date + @booking.nights %>" disabled >
+            </div>
+            <div class="field">
+              <label>Nights</label>
+              <input value="<%= @booking.nights %>" disabled >
+            </div>
+            <div class="field">
+              <label>Guests</label>
+              <input value="<%= @booking.guests %>" disabled >
+            </div>
+            <div class="field">
+              <label>Comments</label>
+              <textarea disabled class="text-area"><%= @booking.comments %></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="pricing-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#pricing-collapse" aria-expanded="true" aria-controls="pricing-collapse"><i class="fa fa-eur"></i>Pricing</a>
+      </div>
+      <div id="pricing-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="pricing-heading">
+        <div class="panel-body">
+          <div class="fields">
+            <div class="field">
+              <label>Pricing</label>
+              <div class="input-group">
+                <input value="<%= @booking.price %>" disabled ><span class="input-group-addon">€</label>
+              </div>
+            </div>
+             <div class="field">
+              <label>Discount</label>
+              <div class="input-group">
+                <input value="<%= @booking.discount %>" disabled ><span class="input-group-addon">%</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

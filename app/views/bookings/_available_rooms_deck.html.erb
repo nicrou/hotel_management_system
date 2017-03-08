@@ -1,0 +1,54 @@
+<%= form_for invoice = Invoice.new, :url => { :action => "new", :controller => "invoices" }, remote: true, method: :get do |f| %>
+  <% if @categories.present? %>
+    <% @categories.each do |category| %>
+      <% if @count[category.id].present? %>
+
+        <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+          <div class="js-thumbnail thumbnail alert-warning">
+            <%= render partial: "categories/thumbnail", locals: { category: category } %>
+            <div class="caption">
+              <% if category.discount.present? %>
+                <% if category.discount != 0 %>
+                  <h1 class="discount"><%= (category.discount).round(0) %></h1>
+                <% else %>
+                  <h1 class="invisible"><%= (category.discount).round(0) %></h1>
+                <% end %>
+              <% end %>
+              <h4 class="js-thumbnail-title thumbnail-title"><%= category.title %> </h4>
+              <h6 class="js-thumbnail-subtitle thumbnail-subtitle"><%= category.subtitle %></h6>
+              <p class="js-thumbnail-description thumbnail-description"><%= category.description %></p>
+              <div class="js-thumbnail-items thumbnail-items alert-warning">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item"><span>Available quantity: </span><label class="quantity"> <%= @count[category.id] %></label></li>
+                  <% if category.discount.present? && category.discount != 0 %>
+                    <% n = category.price - (category.price * category.discount) / 100 %>
+                      <li class="list-group-item">
+                        <span class="price"><%= number_to_euro(category.price) %></span>
+                        <span class="offer"><%= number_to_euro(n) %></span>
+                      </li>
+                    <% else %>
+                      <li class="list-group-item"><%= number_to_euro(category.price) %></li>
+                  <% end %>
+                  <li class="list-group-item tag-container"><%= wrap_tags(split_tags(category.tags)).html_safe %></li>
+                </ul>
+              </div>
+              <%= f.fields_for :bookings, Booking.new do |booking| %>
+              <%= booking.hidden_field :room_id, value: category.id %>
+              <%= booking.hidden_field :nights, value: @nights %>
+              <%= booking.hidden_field :start_date, value: @start_date %>
+              <%= booking.text_field :is_selected, type: "checkbox", data: { off_label: "false", on_label: "false", off_active_cls: "btn-warning", on_active_cls: "btn-primary", off_icon_cls: "fa fa-close", on_icon_cls: "fa fa-shopping-cart", switch_always: true } %>
+              <%= booking.select :qty, options_for_select((1..@count[category.id]).step(1)), {}, class: "js-selectpicker", data: { width: "72px" } %>
+            <% end %>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
+
+<%= javascript_tag do %>
+  bookings.initDeckControls();
+  categories.beautifyTags();
+<% end %>

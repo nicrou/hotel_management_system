@@ -1,0 +1,26 @@
+swal({
+  type: '',
+  html: '<div></div>',
+  showCloseButton: true,
+  showConfirmButton: true,
+  width: "90%"
+})
+
+$(".swal2-modal .swal2-content").append('<%= @component.escape_primes.html_safe.to_s %>');
+
+<% if @component.is_slider == true %>
+
+$(".owl-carousel").owlCarousel({
+    items: 1,
+    loop: true,
+    center: true,
+    autoplay: true,
+    autoplayTimeout: 3000,
+    //autoplayHoverPause: true,
+
+    animateOut: 'slideOutDown',
+    animateIn: 'flipInX',
+    smartSpeed: 450,
+  });
+
+<% end %>

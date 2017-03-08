@@ -1,0 +1,7 @@
+<div class="row model">
+  <%= render partial: "bootstrap_table" %>
+</div>
+
+<div class="bootstrap-table-toolbar">
+  <%= link_to new_room_path, remote: true, id: "new-room", class: "btn btn-default" do %><i class="fa fa-plus"></i><% end %>
+</div>

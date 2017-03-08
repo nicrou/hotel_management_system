@@ -1,0 +1,166 @@
+var charts = {
+  swapActive: function(element){
+    var btn = element.siblings(".btn.btn-primary.active");
+    btn.removeClass("btn-primary active");
+    btn.addClass("btn-default");
+    element.removeClass("btn-default");
+    element.addClass("btn-primary active");
+  },
+
+  initIndex: function(){
+    $(".js-dropdown-placeholder").text($(".js-action.active[data-action=1]").text());
+    $(".js-year").show();
+    $(".js-month").hide();
+  },
+
+  initControls: function(){
+    var controls = $(".js-chart-controls");
+    $(function(){
+      // Data action dropdown control
+      $(".js-chart-controls").on('click', ".js-item-selection ul.dropdown-menu>li.js-action", function(){
+        $(this).siblings("li.js-action").removeClass("active");
+        $(this).addClass("active");
+
+        var input = $(".js-chart-container>form").find("input#data_action");
+        input.val($(this).attr("data-action"));
+        $(".js-dropdown-placeholder").text($(".js-action.active").text());
+
+        $(".js-chart-container>form").submit();
+      })
+    })
+
+    $(function(){
+      // Annual & Monthly checkbox control
+      var control = controls.find(".js-mode-selection input");
+
+      if (control.hasClass("applied") == false) {
+        control.checkboxpicker();
+        control.addClass("applied");
+      }
+
+      $(".js-chart-controls").on('change', '.js-mode-selection input', function() {
+        var form = $(".js-chart-container>form");
+        var input = form.find("input#mode");
+
+        if (input.val() == "annual"){
+          input.val("monthly");
+          form.attr("action", "show_monthly");
+          form.submit();
+        }
+        else {
+          input.val("annual");
+          form.attr("action", "show_annual");
+          form.submit();
+        }
+        $(".js-month").toggle();
+        $(".js-year").toggle();
+        $(".js-select-category-wrap").toggle();
+      });
+    })
+
+    $(function(){
+      // Category selectpicker control.
+      var control = controls.find(".js-selectpicker");
+
+      if (control.hasClass("applied") == false) {
+        control.selectpicker();
+        control.addClass("applied");
+      }
+
+      $(".js-chart-controls").on("changed.bs.select", ".js-selectpicker", function (e) {
+        var input = $(".js-chart-container>form").find("input#category");
+        input.val(control.val());
+        $(".js-chart-container>form").submit();
+      });
+    })
+
+    $(function(){
+      $(".js-chart-controls").on("click", ".js-previous-year", function(){
+        var input = $(".js-chart-container>form").find("input#date");
+        var date = moment(input.val()).subtract(1, 'years').format("YYYY-MM-DD");
+        $(".js-year>label").text(moment(date).format("YYYY"));
+        input.val(date);
+        $(".js-chart-container>form").submit();
+      })
+    })
+
+    $(function(){
+      $(".js-chart-controls").on("click", ".js-next-year", function(){
+        var input = $(".js-chart-container>form").find("input#date");
+        var date = moment(input.val()).add(1, 'years').format("YYYY-MM-DD");
+        $(".js-year>label").text(moment(date).format("YYYY"));
+        input.val(date);
+        $(".js-chart-container>form").submit();
+      })
+    })
+
+    $(function(){
+      $(".js-chart-controls").on("click", ".js-previous-month", function(){
+        var input = $(".js-chart-container>form").find("input#date");
+        var date = moment(input.val()).subtract(1, 'months').format("YYYY-MM-DD");
+        $(".js-month>label").text(moment(date).format("MMMM YYYY"));
+        input.val(date);
+        $(".js-chart-container>form").submit();
+      })
+    })
+
+    $(function(){
+      $(".js-chart-controls").on("click", ".js-next-month", function(){
+        var input = $(".js-chart-container>form").find("input#date");
+        var date = moment(input.val()).add(1, 'months').format("YYYY-MM-DD");
+        $(".js-month>label").text(moment(date).format("MMMM YYYY"));
+        input.val(date);
+        $(".js-chart-container>form").submit();
+      })
+    })
+
+    $(function(){
+      // Chart selection button controls.
+      $(".js-chart-controls").on("click", ".js-chart-selection-menu>.btn", function(){
+        var input = $(".js-chart-container>form").find("input#type");
+        charts.swapActive($(this));
+        input.val($(this).attr("data-chart"))
+        $(".js-chart-container>form").submit();
+      })
+    })
+  },
+
+  disableControls: function(){
+    var controls = $(".js-chart-container>form");
+    var mode = $("input#mode").val();
+    var type = $('.js-chart-selection-menu>button.btn-primary.active').attr("data-chart");
+    var action = $("input#data_action").val();
+
+    $(".js-select-category-wrap").show();
+    if ((action == 3 || action == 4) || mode == "monthly"){
+      $(".js-select-category-wrap").hide();
+    }
+
+    $('.js-chart-selection-menu>button[data-chart="line"]').prop( "disabled", false );
+    $('.js-chart-selection-menu>button[data-chart="pie"]').prop( "disabled", false );
+    $('.js-chart-selection-menu>button[data-chart="doughnut"]').prop( "disabled", false );
+
+    if ((action == 3 || action == 4) && mode == "annual"){
+      $('.js-chart-selection-menu>button[data-chart="pie"]').prop( "disabled", true );
+      $('.js-chart-selection-menu>button[data-chart="doughnut"]').prop( "disabled", true );
+      if (type == "pie" || type == "doughnut") {
+        var barElement = $('.js-chart-selection-menu>button[data-chart="bar"]');
+        charts.swapActive(barElement);
+      }
+    }
+
+    if ((action == 3 || action == 4) && mode == "monthly"){
+      $('.js-chart-selection-menu>button[data-chart="line"]').prop( "disabled", true );
+      if (type == "line") {
+        var barElement = $('.js-chart-selection-menu>button[data-chart="bar"]');
+        charts.swapActive(barElement);
+      }
+    }
+
+    $(".dropdown-menu.inner>li").css("display", "block");
+
+    if ((mode == "annual") && (type == "pie" || type == "doughnut")){
+      $('.dropdown-menu.inner>li[data-original-index="1"]').css("display", "none");
+    }
+  }
+}

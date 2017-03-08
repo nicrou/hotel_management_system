@@ -1,0 +1,29 @@
+<div class="row themes">
+  <%= render partial: "themes" %>
+</div>
+
+<div class="bootstrap-table-toolbar">
+  <button class="btn btn-default js-new" type="button"><i class="fa fa-plus"></i></button>
+</div>
+
+<div class="wrap-panel-alert">
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! Use each theme's corresponding <i class="fa fa-trash"></i> to delete it and <i class="fa fa-pencil"></i> to rename it.
+  </div>
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! Pressing <i class="fa fa-paint-brush"></i> will display a color picker for each part of the theme's palette. </br>
+          The main color of the content is the one in the bottom right corner. The rest are used for the navbar's effects ( top left corner ), footer's background ( bottom left corner ) and the one at top right corner can be used for various effects of the hotel's page [ NOT the administration panel ]. In this demo is used for the other side of the cube button. </br>
+          To confirm and finalize any color changes press <i class="fa fa-save">.</i>
+  </div>
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! Pressing a theme's thumbnail will preselect it. The selected theme's thumbnail is the one pointing upward. </br>
+          To confirm your selection you need to press <i class="fa fa-save">.</i> </br>
+          Do NOT add css code in selected_theme.scss since this file it is auto generated and overwritten by the system whenever the selected theme changes. Thus any manual changes will be lost the next time you save a selection. </br>
+          To further customize your theme ( like the footer's text color or navbar's background color etc. ) you can edit the custom.scss stylesheet instead.</br>
+          If you need to use these colors in other part of the hotel page consistently you can find the generated scss code in the theme's helper method <b>scss_properties</b> and change it accordingly.
+
+  </div>
+</div>

@@ -1,0 +1,10 @@
+swal({
+  type: '',
+  html: '<div></div>',
+  showCloseButton: true,
+  showConfirmButton: true,
+  width: "90%"
+})
+
+
+$(".swal2-modal .swal2-content").append('<%= @content.escape_primes.html_safe %>');

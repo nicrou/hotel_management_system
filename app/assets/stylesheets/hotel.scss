@@ -1,0 +1,134 @@
+section.row {
+  padding: 0px;
+  margin: 0px;
+  .navbar-default {
+    margin-bottom: 0px;
+    min-height: 40px;
+
+  }
+  .navbar-brand {
+    height: 40px;
+  }
+}
+
+section.content {
+  padding-bottom: 20px;
+  background-color: #fff;
+  .row {
+    text-align: center;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  div { padding: 0px 0px 20px 0px; }
+
+
+  img {
+    max-width: 100%;
+    max-height: 600px;
+  }
+  .error {
+    padding: 5%;
+    max-width: 680px;
+    margin: auto;
+    p {
+      color: #555;
+      font-weight: bold;
+      font-size: 14px;
+      display: block;
+    }
+    i {
+      text-align: center;
+      display: block;
+    }
+  }
+}
+
+.booking-search {
+  text-align: center;
+  margin-top: 54px;
+  a { display: inline-block;}
+  a:hover {
+    text-decoration: none;
+  }
+}
+
+iframe.google-map {
+  width: 100%;
+  min-height: 300px;
+
+}
+
+/* Footer Sections */
+footer.row>div { margin: 30px 0px 30px 0px; }
+footer.row {
+  padding: 0px;
+  margin: 0px;
+
+  width: 100%;
+  background-color:#302e2c;
+  .element {
+    display: block;
+    position: relative;
+
+    margin-left: 32px;
+    margin-top: 12px;
+    &:before {
+      font-family: FontAwesome;
+      font-style: normal;
+      font-weight: normal;
+      text-decoration: inherit;
+
+      /*--adjust as necessary--*/
+
+      font-size: 18px;
+      position: absolute;
+      top: 0px;
+      left: -32px;
+    }
+  }
+  .element.hotel:before { content: "\f1ad"; }
+  .element.address:before { content: "\f041"; }
+  .element.email:before { content: "\f003"; }
+  .element.telephone:before { content: "\f095"; }
+  .element.fax:before { content: "\f1ac"; }
+  .element.locale:before { content: "\f1ab"; font-size: 3em; left: -50px; top: -12px }
+  .contact {
+    margin: 0 auto;
+    max-width: 200px;
+  }
+
+  .sitemap, .useful-links {
+    text-align: center;
+  }
+  .locales {
+    padding: 20px 20px 20px 42px;
+    text-align: center;
+    .popover-title {
+      color: #000;
+    }
+  }
+  .social-media-group {
+    text-align: center;
+    div {
+      display: inline-block;
+      margin-bottom: -20px;
+      margin-top: -20px;
+      a {
+        margin-left: -20px;
+        margin-right: -20px;
+      }
+    }
+  }
+}
+
+@-webkit-keyframes pulsate {
+  0% {-webkit-transform: scale(0.6, 0.6); opacity: 1.0;}
+  50% {-webkit-transform: scale(0.5, 0.5); opacity: 1.0;}
+  100% {-webkit-transform: scale(0.6, 0.6); opacity: 1.0;}
+}
+
+.pulsate-animation {
+  -webkit-animation: pulsate 3s linear;
+  -webkit-animation-iteration-count: infinite;
+}

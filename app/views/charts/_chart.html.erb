@@ -1,0 +1,9 @@
+<% if @control.type == "line" %>
+  <%= line_chart data(@labels, @data, @control.type), options(1) %>
+<% elsif @control.type == "bar" %>
+  <%= bar_chart data(@labels, @data, @control.type), options(1) %>
+<% elsif @control.type == "pie" %>
+  <%= pie_chart data(@labels, @data, @control.type), options(2) %>
+<% else %>
+  <%= doughnut_chart data(@labels, @data, @control.type), options(2) %>
+<% end %>

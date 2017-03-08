@@ -1,0 +1,127 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-primary">
+    <div class="panel-heading" role="tab" id="customer-identity-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#customer-identity-collapse" aria-expanded="true" aria-controls="customer-identity-collapse"><i class="fa fa-user"></i>Customer's Identity</a>
+    </div>
+    <div id="customer-identity-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="customer-identity-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <div class="field">
+            <%= f.label :title, class: "required" %>
+            <%= f.text_field :title %>
+          </div>
+
+          <div class="field">
+            <%= f.label :forename, class: "required" %>
+            <%= f.text_field :forename %>
+          </div>
+
+          <div class="field">
+            <%= f.label :surname, class: "required" %>
+            <%= f.text_field :surname %>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="visitorp-identity-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#visitor-identity-collapse" aria-expanded="true" aria-controls="visitor-identity-collapse"><i class="fa fa-user-o"></i>Visitor's Identity</a>
+    </div>
+    <div id="visitor-identity-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="visitor-identity-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <div class="alert alert-warning">Fill this part in case you are making the booking for someone else and you won't be staying.</div>
+          <div class="field">
+            <%= f.label :v_title %>
+            <%= f.text_field :v_title %>
+          </div>
+
+          <div class="field">
+            <%= f.label :v_forename %>
+            <%= f.text_field :v_forename %>
+          </div>
+
+          <div class="field">
+            <%= f.label :v_surname %>
+            <%= f.text_field :v_surname %>
+          </div>
+
+          <% if params[:action] == "edit" %>
+            <div class="field">
+              <%= f.label :identification_credential %>
+              <%= f.text_field :identification_credential %>
+            </div>
+          <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="contact-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#contact-collapse" aria-expanded="true" aria-controls="contact-collapse"><i class="fa fa-comments-o"></i>Contact Information</a>
+    </div>
+    <div id="contact-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="contact-heading">
+      <div class="panel-body">
+        <div class="fields">
+            <div class="field">
+              <%= f.label :email, class: "required" %>
+              <%= f.text_field :email %>
+            </div>
+            <div class="field">
+              <%= f.label :mobile_phone, class: "required" %>
+              <%= f.text_field :mobile_phone %>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="additional-info-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#additional-info-collapse" aria-expanded="true" aria-controls="additional-info-collapse"><i class="fa fa-comment-o"></i>Additional Information</a>
+    </div>
+    <div id="additional-info-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="additional-info-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <div class="field">
+            <%= f.label :notes %>
+            <%= f.text_area :notes, class: "text-area" %>
+          </div>
+          <div class="field">
+            <%= f.label :reason, class: "required" %>
+            <%= f.hidden_field :reason, class: "js-reason" %>
+            <% if customer.reason == "Business" %>
+              <input class="js-reason" type="checkbox"
+              data-off-title="Business" data-on-title="Vacation" data-switch-always
+              data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+              data-off-icon-cls="fa fa-briefcase" data-on-icon-cls="fa fa-globe"
+              data-off-label = "Business" data-on-label = "Vacation" >
+            <% else %>
+              <input class="js-reason" type="checkbox"
+              data-off-title="Business" data-on-title="Vacation" data-switch-always
+              data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+              data-off-icon-cls="fa fa-briefcase" data-on-icon-cls="fa fa-globe"
+              data-off-label = "Business" data-on-label = "Vacation" checked>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  $(":checkbox").checkboxpicker();
+
+  $('.field').on('change', ':checkbox', function() {
+    if ($(this).attr("checked") == true) {
+      $(".js-reason").val("Vacation");
+    }
+    else {
+      $(".js-reason").val("Business");
+    }
+  });
+
+<% end %>

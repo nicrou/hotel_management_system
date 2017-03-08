@@ -1,0 +1,33 @@
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-primary">
+      <div class="panel-heading" role="tab" id="info-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#info-collapse" aria-expanded="true" aria-controls="info-collapse"><i class="fa fa-info"></i>Room Info</a>
+      </div>
+      <div id="info-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="info-heading">
+        <div class="panel-body">
+          <div class="fields">
+            <div class="field">
+              <label>Category</label>
+              <input value="<%= @room.category.title %>" disabled >
+            </div>
+            <div class="field">
+              <label>Building</label>
+              <input value="<%= @room.building %>" disabled >
+            </div>
+            <div class="field">
+              <label>Floor</label>
+              <input value="<%= @room.floor %>" disabled >
+            </div>
+            <div class="field">
+              <label>Number</label>
+              <input value="<%= @room.number %>" disabled >
+            </div>
+            <div class="field">
+              <label>Additional Notes</label>
+              <input value="<%= @room.notes %>" disabled >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

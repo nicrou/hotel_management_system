@@ -1,0 +1,64 @@
+
+<% display_location = String.new(@active_dir) %>
+<% display_location.slice!(/(public\/)/) %>
+<% display_location = display_location[0..-3] %>
+<% breadcrumbs = display_location.split("/") %>
+<% location = "" %>
+<div class="dir-location-wrapper">
+  <ol class="breadcrumb">
+    <li></li>
+    <% breadcrumbs.each_with_index do |dir, index| %>
+    <% location = "#{File.join(location, dir)}" %>
+      <% if index == breadcrumbs.size - 1 %>
+        <li class=""><%= dir %></li>
+      <% else %>
+        <li><%= link_to files_show_path(file_location: location), remote: true do %> <%= dir %><% end %></li>
+      <% end %>
+    <% end %>
+    <li><input type="hidden" class="js-dir-location" value="<%= location %>"></li>
+  </ol>
+
+  <span class="btn-group">
+    <button class="btn btn-default add-new-directory" title="Add New Folder"><i class="fa fa-plus"></i> <i class="fa fa-folder-o"></i></button>
+    <%= link_to files_show_path(file_location: "#{display_location}"), remote: true, title: "refresh", id: "refresh", class: "btn btn-default" do %><i class="fa fa-refresh"></i></i><% end %>
+  </span>
+</div>
+
+<% Dir[@active_dir].each do |file| %>
+  <% if File.directory?(file) %>
+    <div class="file">
+      <div class="filename"><span ><%= File.basename(file) %></span></div>
+      <%= image_tag("icons/file_management/documents.ico", :class => "thumb") %>
+      <%= link_to files_show_path(file_location: "#{File.join(display_location, File.basename(file))}"), remote: true do %><i class="fa fa-folder-open-o" title="Open"></i><% end %>
+      <a class="rename-file" data-file-name="<%= "#{File.basename(file)}" %>"><i class="fa fa-pencil" title="Rename"></i></a>
+      <%= link_to files_destroy_path(file_location: "#{display_location}", file_name: "#{File.basename(file)}"), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %>
+    </div>
+    <% else %>
+      <div class="file">
+        <div class="filename"><span ><%= File.basename(file) %></span></div>
+        <% ext = File.extname(file)[1..-1] %>
+        <% if ext.present? %>
+          <% if ext == "png" || ext == "jpg" || ext == "jpeg" || ext == "tiff" || ext == "bmp" || ext == "svg" %>
+            <% path = File.join("/" + display_location, File.basename(file)) %>
+            <a class="fancy-image" href="<%= path %>"><%= image_tag(path, :class => "thumb thumb-frame") %></a>
+          <% else %>
+            <% path = "icons/file_management/" %>
+            <%= image_tag("#{path + ext + '.ico'}", :class => "thumb") %>
+          <% end %>
+          <% if ext == "png" || ext == "jpg" || ext == "jpeg" || ext == "tiff" || ext == "bmp" || ext == "svg" %>
+            <a class="fancy-image" href="<%= path %>"><i class="fa fa-eye" title="View"></i></a>
+          <% end %>
+          <% if ext == "pdf" %>
+            <%= link_to files_view_pdf_path(file_location: "#{File.join(display_location, File.basename(file))}"), target: "_blank", title: "View PDF" do %><i class="fa fa-book" title="Download"></i><% end %>
+          <% end %>
+        <% end %>
+        <%= link_to files_download_path(file_location: "#{File.join(display_location, File.basename(file))}"), title: "Download" do %><i class="fa fa-download" title="Download"></i><% end %>
+        <a class="rename-file" data-file-name="<%= "#{File.basename(file)}" %>"><i class="fa fa-pencil" title="Rename"></i></a>
+        <%= link_to files_destroy_path(file_location: "#{display_location}", file_name: "#{File.basename(file)}"), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %>
+      </div>
+    <% end %>
+<% end %>
+
+<%= javascript_tag do %>
+  files.initControls();
+<% end %>

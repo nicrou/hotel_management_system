@@ -1,0 +1,56 @@
+<%= form_for @booking, remote: true do |f| %>
+
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@booking.errors.count, "error") %> prohibited
+        this booking from being saved:
+      </h2>
+      <ul>
+        <% @booking.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-primary">
+        <div class="panel-heading" role="tab" id="info-heading">
+            <a data-toggle="collapse" data-parent="#accordion" href="#info-collapse" aria-expanded="true" aria-controls="info-collapse"><i class="fa fa-info"></i>Booking Info</a>
+        </div>
+        <div id="info-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="info-heading">
+          <div class="panel-body">
+            <div class="fields">
+              <div class="field">
+                <span class="required">Room</span>
+                <%= f.number_field :room_id, step: 1 %>
+                <div class="alert alert-warning">Warning! You need to instert the actual [ID] value of the room!</div>
+              </div>
+              <div class="field">
+                <span class="required">Start Date</span>
+                <%= f.text_field :start_date, id: "start-date", class: "datepicker form-control", placeholder: "Start" %>
+              </div>
+              <div class="field">
+                <span class="required">Nights</span>
+                <%= f.number_field :nights, min: 1, step: 1 %>
+              </div>
+              <div class="field">
+                <span>Guests</span>
+                <%= f.number_field :guests, min: 1, step: 1 %>
+              </div>
+              <div class="field">
+                <span>Comments</span>
+                <%= f.text_area :comments, class: "text-area" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<% end %>
+
+<%= javascript_tag do %>
+  bookings.initFormControls();
+<% end %>

@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  header_color: MyString
+  body_color: MyString
+  menu_color: MyString
+  footer_color: MyString
+  facebook: MyString
+  twitter: MyString
+  google_plus: MyString
+  youtube: MyString
+  template: MyString
+
+two:
+  header_color: MyString
+  body_color: MyString
+  menu_color: MyString
+  footer_color: MyString
+  facebook: MyString
+  twitter: MyString
+  google_plus: MyString
+  youtube: MyString
+  template: MyString

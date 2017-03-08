@@ -1,0 +1,28 @@
+<div class="wrap-panel-alert">
+<% if @data_action == 1 %>
+    <div class="alert alert-info alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      Info! A booking is counted to the month where its start day belongs.
+    </div>
+  <% elsif @data_action == 2 %>
+    <div class="alert alert-info alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      Info! Income is counted per category and checks booking's expected income using it's end day. It isn't considering if the invoice is actually paid. Use the Pending Payments option for further information of paid and unpaid invoices.
+    </div>
+  <% else %>
+<% end %>
+<% if @type == "line" %>
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! When using the [ All ] option with a line chart you may notice that some lines overlap if they share the same value. You can use the labels to deselect some from the chart if it becomes unreadable with too many lines.
+  </div>
+<% elsif @type == "bar" %>
+<% else %>
+  <% if @mode == "annual" %>
+    <div class="alert alert-info alert-dismissable">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      Info! Unlinke line and bar charts, pie and doughnut charts do not have the [ All ] option since that would make them unreadable. If you want to see figures with all categories and specific months use the monthly mode instead.
+    </div>
+  <% end %>
+<% end %>
+</div>

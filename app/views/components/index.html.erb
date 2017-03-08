@@ -1,0 +1,39 @@
+<div class="row model">
+  <%= render partial: "bootstrap_table" %>
+</div>
+
+<div class="js-bootstrap-table-toolbar bootstrap-table-toolbar">
+  <%= link_to new_component_path, class: "btn btn-default" do %><i class="fa fa-cog"> +</i><% end %>
+  <%= link_to new_component_path(:type => "slider"), class: "btn btn-default", title: "Slider", remote: true do %><i class="fa fa-picture-o"> +</i><% end %>
+  <%= link_to new_component_path(:type => "map"), class: "btn btn-default", title: "Map", remote: true do %><i class="fa fa-map"> +</i><% end %>
+  <button class="btn btn-default" data-title="Facebook" title="Facebook" type="button"><i class="fa fa-facebook-official"> +</i></button>
+  <button class="btn btn-default" data-title="Twitter" title="Twitter" type="button"><i class="fa fa-twitter"> +</i></button>
+  <button class="btn btn-default" data-title="Google-plus" title="Google-plus" type="button"><i class="fa fa-google-plus"> +</i></button>
+  <!--<button class="btn btn-default" data-title="Instagram" type="button"><i class="fa fa-instagram"> +</i></button> Whoops the set doesn't have an instagram ico -->
+  <button class="btn btn-default" data-title="Pinterest" title="Pinterest" type="button"><i class="fa fa-pinterest"> +</i></button>
+  <button class="btn btn-default" data-title="Youtube" title="Youtube" type="button"><i class="fa fa-youtube"> +</i></button>
+</div>
+
+<div class="wrap-panel-alert">
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! The [ Type ] column displays the type of each component. </br></br>
+          <p class=""><i class="fa fa-cog"></i> : This icon means the record is a custom component.</p>
+          <p class=""><i class="fa fa-picture-o"></i> : This is a slider component using images from a collection directory of your choice.</p>
+          <p class=""><i class="fa fa-map"></i> : This is a map component using [ Google Maps Embed API ].</p>
+          <p class=""><i class="fa fa-facebook-official"></i>
+                      <i class="fa fa-twitter"></i>
+                      <i class="fa fa-google-plus"></i>
+                      <i class="fa fa-pinterest"></i>
+                      <i class="fa fa-youtube"></i> : These are social-media links that are used in the site's footer.</p>
+  </div>
+  <div class="alert alert-warning alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Warning! Try not to create dublicates of the following. Only the first instance of each will be displayed.</br>
+             Facebook • Twitter • Google-plus <!-- • Instagram --> • Pinterest • YouTube<br>
+             In addition remember to insert the link with its <b>http://</b> prefix as is.
+  </div>
+</div>
+<%= javascript_tag do %>
+  components.initButtons();
+<% end %>

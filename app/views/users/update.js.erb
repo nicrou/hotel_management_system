@@ -1,0 +1,10 @@
+swal({
+  type: 'success',
+  title: 'Success!',
+  html: '<%= @user.profile.id %>. <%= @user.profile.forename %> <%= @user.profile.surname %> has been updated.',
+  showCloseButton: true,
+  confirmButtonText: '<i class="fa fa-check"></i>'
+  })
+
+$(".row").html("<%= escape_javascript(render "profiles/bootstrap_table") %>");
+$(".js-bootstrap-table").bootstrapTable();

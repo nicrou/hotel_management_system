@@ -1,0 +1,36 @@
+<% @themes.each do |t| %>
+<div class="thumbnail-wrap">
+  <div><span ><%= t.title %></span></div>
+  <% if t.selected == true %>
+    <div class="js-thumbnail thumbnail active">
+  <% else %>
+    <div class="js-thumbnail thumbnail">
+  <% end %>
+      <div class="container-top">
+        <div class="js-part part top-left" style="background-color: <%= t.navbar %>">
+          <input type="text" data-color="1" class="js-pick-a-color hidden">
+        </div>
+        <div class="js-part part top-right" style="background-color: <%= t.module %>">
+          <input type="text" data-color="2" class="js-pick-a-color hidden">
+        </div>
+      </div>
+      <div class="container-bottom">
+        <div class="js-part part bottom-left" style="background-color: <%= t.footer %>">
+          <input type="text" data-color="3" class="js-pick-a-color hidden">
+        </div>
+        <div class="js-part part bottom-right" style="background-color: <%= t.content %>">
+          <input type="text" data-color="4" class="js-pick-a-color hidden">
+        </div>
+      </div>
+    </div>
+    <a class="js-update" data-id="<%= t.id %>" title="Update"><i class="fa fa-save" title="Update"></i></a>
+    <a class="js-rename" data-name="<%= t.title %>" data-id="<%= t.id %>" title="Rename"><i class="fa fa-pencil" title="Rename"></i></a>
+    <a class="js-edit" title="Edit Colors"><i class="fa fa-paint-brush" title="Edit Colors"></i></a>
+    <%= link_to theme_path(t.id), method: :delete, remote: true, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %>
+  </div>
+<% end %>
+<hr>
+
+<%= javascript_tag do %>
+  themes.initIndex();
+<% end %>

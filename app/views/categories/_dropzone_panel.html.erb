@@ -1,0 +1,31 @@
+<div class="panel panel-default">
+  <div class="panel-heading" role="tab" id="image-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#image-collapse" aria-expanded="true" aria-controls="image-collapse"><i class="fa fa-picture-o"></i>Images</a>
+  </div>
+  <div id="image-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="image-heading">
+    <div class="panel-body">
+      <div class="row download-manager">
+        <i class="fa fa-exclamation-triangle notice-marker"></i>
+          <p>
+            Notice! Drag & Drop Area. You can drag a file and drop it in the marked area to automatically initiate the upload process. In addition you can click on the
+            area and select the file. <br />
+            The maximum file size allowed is approximately 128 MB. <br />
+            The maximum number of files allowed per dropzone instance is set to ten [ 10 ].
+          </p>
+        <input type=hidden name="files_list">
+        <!-- Use this <div> element to initialize the Dropzone -->
+        <div id="dropzone" class="dropzone"></div>
+        <!-- This <div> elements shows a message after a successful upload. -->
+        <div id="msgBoard"></div>
+        <div class="download-buttons">
+          <button class="btn btn-warning clear-all" type="button">Clear All</button>
+          <button class="btn btn-default clear-completed" type="button">Clear Completed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  categories.initDropzone("<%= request.base_url %>", "<%= category.title %>");
+<% end %>

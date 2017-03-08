@@ -1,0 +1,24 @@
+<% if @type == "slider" %>
+swal({
+    type: 'warning',
+    html: '<div></div>',
+    showCloseButton: true,
+    showConfirmButton: true,
+    confirmButtonText: 'Confirm'
+    })
+
+  $(".swal2-modal .swal2-content").html("<%= escape_javascript(render "form_for_slider") %>");
+<% elsif @type == "map" %>
+  swal({
+    type: 'warning',
+    html: '<div></div>',
+    showCloseButton: true,
+    showConfirmButton: true,
+    confirmButtonText: 'Confirm'
+    })
+
+  $(".swal2-modal .swal2-content").html("<%= escape_javascript(render "form_for_map") %>");
+
+<% else %>
+  // Other custom module create form partials
+<% end %>

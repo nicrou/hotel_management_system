@@ -1,0 +1,56 @@
+
+<% if @invoice.bookings.blank? %>
+var content = '<div class="help-message"><ol>' +
+                '<li>Select a date range and press <i class="fa fa-search"></i>.</li>' +
+                '<li>Check the respective boxes <i class="fa fa-shopping-cart"></i> and the quantity of the rooms you want to book.</li>' +
+                '<li>Procceed to checkout.</li>' +
+              '</ol></div>'
+
+swal({
+  title: 'Notice!',
+  text: content,
+  type: 'question',
+  confirmButtonText: 'OK',
+  showCloseButton: true
+})
+
+<% else %>
+
+swal({
+  html: '<div></div>',
+  showCloseButton: true,
+  showConfirmButton: false,
+  padding: 4
+})
+
+$(".swal2-modal .swal2-content").html("<%= escape_javascript(render "new") %>");
+
+var current_fieldset, next_fieldset, previous_fieldset;
+
+$(".swal2-modal .next").click(function(){
+
+	current_fieldset = $(this).parent();
+	next_fieldset = $(this).parent().next();
+
+	// Activate next step on progress-indicator using the index of next_fieldset.
+	$(".progress-indicator li").eq($("fieldset").index(next_fieldset)).addClass("completed");
+
+	//show the next fieldset
+	next_fieldset.show(200);
+  current_fieldset.hide(200);
+});
+
+$(".swal2-modal .previous").click(function(){
+
+	current_fieldset = $(this).parent();
+	previous_fieldset = $(this).parent().prev();
+
+	// De-activate current step on progress-indicator.
+  $(".progress-indicator li").eq($("fieldset").index(current_fieldset)).removeClass("completed");
+
+	// Show the previous fieldset.
+  current_fieldset.hide(200);
+	previous_fieldset.show(200);
+});
+
+<% end %>

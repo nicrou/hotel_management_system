@@ -1,0 +1,57 @@
+<table class="js-bootstrap-table" data-show-columns="true"
+                                  data-search="true"
+                                  data-show-refresh="true"
+                                  data-show-toggle="true"
+                                  data-pagination="true">
+    <thead>
+      <tr>
+          <th data-halign="center" data-align="center" data-sortable="true" >Title</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >locale</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Index</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Position</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Has Slider</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Has Map</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Has Components</th>
+          <th data-halign="center" data-align="center" data-visible="true" >View</th>
+          <th data-halign="center" data-align="center" data-visible="true" >Edit</th>
+          <th data-halign="center" data-align="center" data-visible="true" >Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @contents.each_with_index do |content, index| %>
+        <tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+          <td><%= content.title %></td>
+          <td><%= content.locale %></td>
+          <% if content.is_index == true %>
+            <td><span class="text-success"><i class="fa fa-check"></i></span></td>
+          <% else %>
+            <td> </td>
+          <% end %>
+
+          <td><%= content.position %></td>
+          
+          <% if content.components.present? && content.components.where(is_slider: true).count > 0 %>
+            <td><span class="text-success"><i class="fa fa-picture-o"></i></span></td>
+          <% else %>
+            <td>  </td>
+          <% end %>
+
+          <% if content.components.present? && content.components.where(is_map: true).count > 0 %>
+            <td><span class="text-success"><i class="fa fa-map"></i></span></td>
+          <% else %>
+            <td>  </td>
+          <% end %>
+
+          <% if content.components.present? %>
+            <td><span><i class="fa fa-cogs"></i></span></td>
+          <% else %>
+            <td>  </td>
+          <% end %>
+
+          <td class="show-trigger"><%= link_to content_path(content), remote: true do %><i class="fa fa-eye"></i><% end %></td>
+          <td class="update-trigger"><%= link_to edit_content_path(content) do %><i class="fa fa-pencil"></i><% end %></td>
+          <td class="delete-trigger"><%= link_to content_path(content), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

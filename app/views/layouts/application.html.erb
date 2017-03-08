@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hotel Management System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% active_theme = Theme.selected_theme %>
+    <style type="text/css">
+      .navbar.navbar-default ul {border-top: 6px solid <%= active_theme.navbar %> !important;}
+      .navbar.navbar-default ul li a {color: <%= active_theme.navbar %> !important;}
+      .navbar.navbar-default ul li.btn {color: <%= active_theme.navbar %> !important;}
+      .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus { background-color: <%= active_theme.navbar %> !important;}
+      .ink {background: <%= active_theme.navbar %> !important;}
+      .development{background: <%= active_theme.module %> !important;}.design{background: <%= active_theme.navbar %> !important;}
+      footer {background-color: <%= active_theme.footer %> !important;}.content{background-color: <%= active_theme.content %> !important;}
+    </style>
+    <%= yield %>
+  </body>
+</html>

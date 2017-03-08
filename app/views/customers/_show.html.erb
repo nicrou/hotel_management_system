@@ -1,0 +1,115 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-primary">
+    <div class="panel-heading" role="tab" id="customer-identity-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#customer-identity-collapse" aria-expanded="true" aria-controls="customer-identity-collapse"><i class="fa fa-user"></i>Customer's Identity</a>
+    </div>
+    <div id="customer-identity-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="customer-identity-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <div class="field">
+            <label>Title</label>
+            <input value="<%= @customer.title %>" disabled >
+          </div>
+          </div>
+
+          <div class="field">
+            <label>Forename</label>
+            <input value="<%= @customer.forename %>" disabled >
+          </div>
+
+          <div class="field">
+            <label>Surname</label>
+            <input value="<%= @customer.surname %>" disabled >
+          </div>
+
+          <div class="field">
+            <label>Identification</label>
+            <input value="<%= @customer.identification_credential %>" disabled >
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="visitorp-identity-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#visitor-identity-collapse" aria-expanded="true" aria-controls="visitor-identity-collapse"><i class="fa fa-user-o"></i>Visitor's Identity</a>
+    </div>
+    <div id="visitor-identity-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="visitor-identity-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <div class="field">
+            <label>Title</label>
+            <input value="<%= @customer.v_title %>" disabled >
+          </div>
+
+          <div class="field">
+            <label>Forename</label>
+            <input value="<%= @customer.v_forename %>" disabled >
+          </div>
+
+          <div class="field">
+            <label>Surname</label>
+            <input value="<%= @customer.v_surname %>" disabled >
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="contact-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#contact-collapse" aria-expanded="true" aria-controls="contact-collapse"><i class="fa fa-comments-o"></i>Contact Information</a>
+    </div>
+    <div id="contact-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="contact-heading">
+      <div class="panel-body">
+        <div class="fields">
+            <div class="field">
+              <label>Email</label>
+              <input value="<%= @customer.email %>" disabled >
+            </div>
+            <div class="field">
+              <label>Mobile Phone</label>
+              <input value="<%= @customer.mobile_phone %>" disabled >
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="additional-info-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#additional-info-collapse" aria-expanded="true" aria-controls="additional-info-collapse"><i class="fa fa-comment-o"></i>Additional Information</a>
+    </div>
+    <div id="additional-info-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="additional-info-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <div class="field">
+            <label>Additional Notes</label>
+            <textarea disabled class="text-area"><%= @customer.notes %></textarea>
+          </div>
+          </div>
+          <div class="field">
+            <span class="block">Reason</label>
+            <% if @customer.reason == "Vacation" %>
+              <input class="js-reason" type="checkbox"
+              data-off-title="Business" data-on-title="Vacation" data-switch-always
+              data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+              data-off-icon-cls="fa fa-briefcase" data-on-icon-cls="fa fa-globe"
+              data-off-label = "Business" data-on-label = "Vacation" disabled checked >
+            <% else %>
+              <input class="js-reason" type="checkbox"
+              data-off-title="Business" data-on-title="Vacation" data-switch-always
+              data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+              data-off-icon-cls="fa fa-briefcase" data-on-icon-cls="fa fa-globe"
+              data-off-label = "Business" data-on-label = "Vacation" disabled >
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= javascript_tag do %>
+  $('.js-reason').checkboxpicker();
+<% end %>

@@ -1,0 +1,14 @@
+<div class="row model">
+  <%= render partial: "bootstrap_table" %>
+</div>
+
+<div class="wrap-panel-alert">
+  <div class="alert alert-warning alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Warning! If you need to delete a customer record, delete the corresponding invoice record from the <%= link_to invoices_path, class: "alert alert-warning" do %><span>Invoices</span><% end %> panel.
+  </div>
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! The [ View Invoice ] column shows the most recent reservation of the selected customer. To retrieve the complete detailed list of all the reservations made in the past by a customer use the <%= link_to invoices_path, class: "alert alert-info" do %><span>Invoices</span><% end %> panel instead.
+  </div>
+</div>

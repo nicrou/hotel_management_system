@@ -1,0 +1,157 @@
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+  <div class="panel panel-primary">
+    <div class="panel-heading" role="tab" id="identity-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#identity-collapse" aria-expanded="true" aria-controls="identity-collapse"><i class="fa fa-user"></i>Identity</a>
+    </div>
+    <div id="identity-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="identity-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <% if @profile.forename.blank? == false %>
+            <div class="field">
+              <label>Forename</label>
+              <input value="<%= @profile.forename %>" disabled>
+            </div>
+          <% end %>
+
+          <% if @profile.surname.blank? == false %>
+            <div class="field">
+              <label>Surname</label>
+              <input value="<%= @profile.surname %>" disabled>
+            </div>
+          <% end %>
+
+          <% if @profile.surname.blank? == false %>
+            <div class="field">
+              <label>Date of Birth</label>
+              <div class="date">
+                <input value="<%= @profile.date_of_birth %>" disabled>
+              </div>
+            </div>
+          <% end %>
+
+          <% if @profile.surname.blank? == false %>
+            <div class="field">
+              <label>Role</label>
+              <input value="<%= @profile.role %>" disabled>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="location-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#location-collapse" aria-expanded="true" aria-controls="location-collapse"><i class="fa fa-map-marker"></i>Location</a>
+    </div>
+    <div id="location-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="location-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <% if @profile.country.blank? == false %>
+            <div class="input-group field">
+              <span class="input-group-label">Country</label>
+              <input value="<%= @profile.country %>" disabled >
+            </div>
+          <% end %>
+
+          <% if @profile.province.blank? == false %>
+            <div class="field">
+              <label>Province</label>
+              <input value="<%= @profile.province %>" disabled >
+            </div>
+          <% end %>
+
+          <% if @profile.city.blank? == false %>
+            <div class="field">
+              <label>City</label>
+              <input value="<%= @profile.city %>" disabled >
+            </div>
+          <% end %>
+
+          <% if @profile.street.blank? == false %>
+            <div class="field">
+              <label>Street</label>
+              <input value="<%= @profile.street %>" disabled >
+            </div>
+          <% end %>
+
+          <% if @profile.postal_code.blank? == false %>
+            <div class="field">
+              <label>Postal Code</label>
+              <input value="<%= @profile.postal_code %>" disabled >
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="contact-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#contact-collapse" aria-expanded="true" aria-controls="contact-collapse"><i class="fa fa-comment-o"></i>Contact Information</a>
+    </div>
+    <div id="contact-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="contact-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <% if @profile.user.email.blank? == false %>
+            <div class="field">
+              <label>Email</label>
+              <input value="<%= @profile.user.email %>" disabled >
+            </div>
+          <% end %>
+
+          <% if @profile.mobile_phone.blank? == false %>
+            <div class="field">
+              <label>Mobile Phone</label>
+              <input value="<%= @profile.mobile_phone %>" disabled >
+            </div>
+          <% end %>
+
+          <% if @profile.home_phone.blank? == false %>
+            <div class="field">
+              <label>Home Phone</label>
+              <input value="<%= @profile.home_phone %>" disabled >
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="business-heading">
+      <a data-toggle="collapse" data-parent="#accordion" href="#business-collapse" aria-expanded="true" aria-controls="business-collapse"><i class="fa fa-briefcase"></i>Business</a>
+    </div>
+    <div id="business-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="business-heading">
+      <div class="panel-body">
+        <div class="fields">
+          <div class="field">
+            <label>Administrator</label>
+            <% if @profile.admin == true %>
+              <input type="checkbox"
+              data-off-title="No" data-on-title="Yes" data-switch-always
+              data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+              data-off-label = "No" data-on-label = "Yes" disabled checked >
+            <% else %>
+              <input type="checkbox"
+              data-off-title="No" data-on-title="Yes" data-switch-always
+              data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+              data-off-label = "No" data-on-label = "Yes" disabled >
+            <% end %>
+          </div>
+          <div class="field">
+            <label>Approved</label>
+            <% if @profile.user.approved == true %>
+              <input type="checkbox"
+              data-off-title="No" data-on-title="Yes" data-switch-always
+              data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+              data-off-label = "No" data-on-label = "Yes" disabled checked >
+            <% else %>
+              <input type="checkbox"
+              data-off-title="No" data-on-title="Yes" data-switch-always
+              data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+              data-off-label = "No" data-on-label = "Yes" disabled >
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

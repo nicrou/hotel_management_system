@@ -1,0 +1,65 @@
+.row.timetable-controls {
+  .select-category-wrap, .rearange-wrap {
+    display: inline-block;
+  }
+
+  .rearange-wrap {
+      a:first-child { width: 141px; }
+      a:nth-child(2) { width: 40px; color: #000 }
+    }
+
+  .title>label {
+    margin-right: 8px;
+    margin-left: 8px;
+    min-width: 160px;
+  }
+
+  .fa-caret {
+    &:hover, &:focus {
+      color: #337ab7;
+      cursor: pointer;
+    }
+  }
+}
+
+.row.timetable-container {
+  .bootstrap-table table.timetable {
+    border-collapse: separate !important;
+  }
+
+  table.timetable {
+    padding: 0px !important;
+    margin-bottom: 24px !important;
+    thead th.tm {
+      min-width: 48px;
+      //color: #428bca;
+      font-weight: bold;
+
+      padding: 8px 8px 8px 8px;
+    }
+
+    tbody tr {
+      &:hover {
+        background-color: transparent !important;
+        cursor: pointer;
+
+      }
+      td.tm {
+        position: relative;
+        .links {
+          position: absolute;
+          top: 4px; left: 0; bottom: 0; right: 0;
+          a {
+            padding: 4px;
+            color: #fff;
+            i { width: 20px; }
+            i:hover, i:focus {
+              text-decoration: none !important;
+              font-size: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

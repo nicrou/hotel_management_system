@@ -1,0 +1,8 @@
+$(function() {
+
+  var content = '<%= escape_javascript(render "show") %>';
+
+  $(".js-chart-container").html(content);
+  
+  charts.disableControls()
+})

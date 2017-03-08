@@ -1,0 +1,45 @@
+<table class="js-bootstrap-table" data-show-columns="true"
+                                  data-search="true"
+                                  data-show-refresh="true"
+                                  data-show-toggle="true"
+                                  data-pagination="true">
+    <thead>
+      <tr>
+          <!-- <th data-field="state" data-checkbox="true"></th> -->
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Passport/Identity Number</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Title</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Forename</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Surname</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Visitor Title</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Visitor Forename</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Visitor Surname</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="true" >Mobile Phone</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Email</th>
+          <th data-halign="center" data-align="center" data-visible="true" >Reason</th>
+          <th data-halign="center" data-align="center" data-visible="false" >Notes</th>
+          <th data-halign="center" data-align="center" data-visible="true" >View</th>
+          <th data-halign="center" data-align="center" data-visible="true" >Edit</th>
+          <th data-halign="center" data-align="center" data-visible="true" >View Invoice</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each_with_index do |customer, index| %>
+          <tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+            <td><%= customer.identification_credential %></td>
+            <td><%= customer.title %></td>
+            <td><%= customer.forename %></td>
+            <td><%= customer.surname %></td>
+            <td><%= customer.v_title %></td>
+            <td><%= customer.v_forename %></td>
+            <td><%= customer.v_surname %></td>
+            <td><%= customer.mobile_phone %></td>
+            <td><%= customer.email %></td>
+            <td><%= customer.reason %></td>
+            <td><%= customer.notes %></td>
+            <td class="show-trigger"><%= link_to customer_path(customer), remote: true do %><i class="fa fa-eye"></i><% end %></td>
+            <td class="update-trigger"><%= link_to edit_customer_path(customer), remote: true do %><i class="fa fa-pencil"></i><% end %></td>
+            <td class="show-invoice-trigger"><%= link_to invoice_path(Invoice.where(customer_id: customer.id).sort_by(&:created_at).last), remote: true do %><i class="fa fa-file-o"></i><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

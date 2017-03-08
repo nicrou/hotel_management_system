@@ -1,0 +1,30 @@
+<div class="forgot-your-password">
+  <div class="fields">
+    <%= link_to hotel_index_path do %>
+      <span class="btn btn-default btn-home" title="Hotel Page"><i class="fa fa-home"></i></span>
+    <% end %>
+
+    <hr />
+    <h4>Forgot your password?</h4>
+    <hr />
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="input-group field">
+      <span class="input-group-addon" title="Email"><i class="fa fa-envelope"></i></span>
+      <!-- <%= f.label :email %><br /> -->
+      <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="actions">
+      <!--<%= f.submit "Send me reset password instructions", :class => "btn btn-primary" %>-->
+      <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+        <i class="fa fa-envelope-open" aria-hidden="true"> Send Mail</i>
+      <% end %><p>This action will send reset instructions to the email address associated with your account.</p>
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+ <% end %>

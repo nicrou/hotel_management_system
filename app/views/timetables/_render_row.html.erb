@@ -1,0 +1,34 @@
+<% booking = bookings[@booking_index] %>
+<% (@first_day..@last_day).each do |day| %>
+  <% if booking.present? %>
+    <% if @booking_flag == false %>
+      <% if day == booking.start_date || @carry == true  %>
+        <% @booking_flag = true %>
+        <% if @carry == false  %>
+          <% @nights = booking.nights %>
+        <% end %>
+        <td class="tm btn-primary booked" colspan="<%= @nights %>">
+          <div class="links js-links">
+            <%= link_to customer_path(booking.invoice.customer), title: "#{booking.invoice.customer.forename} #{booking.invoice.customer.surname}", data: { toggle: "tooltip", placement: "left" }, remote: true do %><i class="fa fa-users"></i><% end %>
+            <%= link_to booking_path(booking), remote: true do %><i class="fa fa-eye"></i><% end %>
+            <%= link_to invoice_path(booking.invoice), title: "#{booking.invoice.code}", data: { toggle: "tooltip", placement: "right" }, remote: true do %><i class="fa fa-file-o"></i><% end %>
+          </div>
+        </td>
+      <% else %>
+        <td class="tm"></td>
+      <% end %>
+    <% end %>
+    <% if @booking_flag == true %>
+      <% if day + 1 != booking.end_date %>
+        <% next %>
+      <% else day + 1 == booking.end_date %>
+        <% @booking_flag = false %>
+        <% @carry = false %>
+        <% @booking_index += 1 %>
+        <% booking = bookings[@booking_index] %>
+      <% end %>
+    <% end %>
+  <% else %>
+    <td class="tm"></td>
+  <% end %>
+<% end %>

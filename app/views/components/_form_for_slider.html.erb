@@ -1,0 +1,60 @@
+  <% if @component.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@component.errors.count, "error") %> prohibited
+        this component from being saved:
+      </h2>
+      <ul>
+        <% @component.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form_for(@component, remote: true) do |f| %>
+    <%= f.hidden_field :content, value: "" %>
+    <%= f.hidden_field :is_slider, value: true %>
+    <%= f.hidden_field :is_editable, value: false %>
+
+    <%= hidden_field_tag :type, @type %>
+
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-primary">
+        <div class="panel-heading" role="tab" id="setup-slider-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#setup-slider-collapse" aria-expanded="true" aria-controls="setup-slider-collapse"><i class="fa fa-picture-o"></i>Setup Slider</a>
+        </div>
+        <div id="setup-slider-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="setup-slider-heading">
+          <div class="panel-body">
+            <div class="fields">
+              <div class="field">
+                <%= f.label :title, class: "required" %>
+                <%= f.text_field :title, class: "title" %>
+              </div>
+              <div class="field">
+                <%= f.label :collection_directory, class: "required" %>
+                <%= f.text_field :collection_directory %>
+                <em>For example if the images are contained in a directory named <b>slider</b> inside <b>files</b> directory, you write: /files/slider</em>
+              </div>
+            <hr>
+            <div class="field">
+              <%= f.label :position %>
+              <%= f.number_field :position, placeholder: "ex. 5" %>
+              <em>Read more about the component positioning index <%= link_to new_component_path do %>here <% end %>(You will be redirected to the new component form).</em>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<div class="wrap-panel-alert">
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! Insert the directory path which contains the images you want to be displayed on the slider.
+          You can have the same directory/slider displayed in any number of pages or use another collection of images for some pages, it is up to you. </br>
+          To create a new directory and upload the images inside use the <%= link_to files_index_path, class: "alert alert-info" do %><span>Files</span><% end %> panel.</br></br>
+          When that is done just enter its path in the form above.
+  </div>
+</div>

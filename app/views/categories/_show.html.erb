@@ -1,0 +1,72 @@
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="image-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#image-collapse" aria-expanded="true" aria-controls="image-collapse"><i class="fa fa-picture-o"></i>Images</a>
+      </div>
+      <div id="image-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="image-heading">
+        <div class="panel-body">
+          <%= render partial: "thumbnail", locals: { category: @category } %>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-primary">
+      <div class="panel-heading" role="tab" id="info-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#info-collapse" aria-expanded="true" aria-controls="info-collapse"><i class="fa fa-info"></i>Category Info</a>
+      </div>
+      <div id="info-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="info-heading">
+        <div class="panel-body">
+          <div class="fields">
+            <div class="field">
+              <label>Title</label>
+              <input value="<%= @category.title %>" disabled >
+            </div>
+            <div class="field">
+              <label>Subtitle</label>
+              <textarea disabled class="text-area"><%= @category.subtitle %></textarea>
+            </div>
+            <div class="field">
+              <label>Description</label>
+              <textarea disabled class="text-area"><%= @category.description %></textarea>
+            </div>
+            <div class="field">
+              <label>Tags</label>
+              <div class="tag-container text-area">
+                <%= wrap_tags(split_tags(@category.tags)).html_safe %>
+              </div>
+            </div>
+            <div class="field">
+              <label>Room Quantity</label>
+              <input value="<%= @category.rooms_count %>" disabled >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="pricing-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#pricing-collapse" aria-expanded="true" aria-controls="pricing-collapse"><i class="fa fa-eur"></i>Pricing</a>
+      </div>
+      <div id="pricing-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="pricing-heading">
+        <div class="panel-body">
+          <div class="fields">
+            <div class="field">
+              <label>Pricing</label>
+              <div class="input-group">
+                <input value="<%= @category.price %>" disabled ><span class="input-group-addon">€</label>
+              </div>
+            </div>
+             <div class="field">
+              <label>Discount</label>
+              <div class="input-group">
+                <input value="<%= @category.discount %>" disabled ><span class="input-group-addon">%</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<%= javascript_tag do %>
+  categories.beautifyTags();
+<% end %>

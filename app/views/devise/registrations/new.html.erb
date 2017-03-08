@@ -1,0 +1,52 @@
+<div class="sign-up">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <div class="fields">
+    <%= link_to hotel_index_path do %>
+      <span class="btn btn-default btn-home" title="Hotel Page"><i class="fa fa-home"></i></span>
+    <% end %>
+
+    <hr />
+    <h4>Sign Up</h4>
+    <hr />
+
+    <%= devise_error_messages! %>
+
+    <div class="input-group field">
+      <span class="input-group-addon" title="Email"><i class="fa fa-envelope"></i></span>
+      <!-- <%= f.label :email %><br /> -->
+      <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
+    </div>
+
+    <div class="input-group field">
+      <span class="input-group-addon" title="Email"><i class="fa fa-lock"></i></span>
+      <!-- <%= f.label :password %> -->
+      <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+    </div>
+
+    <% if @minimum_password_length %>
+    <em><%= @minimum_password_length %> characters minimum. Passwords must contain characters from all the following categories:</br>
+      Uppercase characters of European languages A through Z.</br>
+      Lowercase characters of European languages a through z.</br>
+      Base 10 digits (0 through 9).</br>
+      Nonalphanumeric characters: @ # $ % ^ & + =
+    </em>
+    <% end %><br />
+
+    <div class="input-group field">
+      <span class="input-group-addon" title="Email"><i class="fa fa-check-circle-o"></i></span>
+      <!-- <%= f.label :password_confirmation %><br /> -->
+      <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password" %>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="actions">
+      <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+        <i class="fa fa-user-plus" aria-hidden="true"> Sign Up</i>
+      <% end %>
+      <!--<%= f.submit "Sign up", :class => "btn btn-primary" %>-->
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+  <% end %>
+</div>

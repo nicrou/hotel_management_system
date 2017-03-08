@@ -1,0 +1,28 @@
+<div class="fields step-1">
+  <h2 class="fs-title">Title</h2>
+    <h1 class="fs-subtitle">Choose the title of the content.</h1>
+  <div class="fields">
+    <div class="field">
+      <%= f.label :title, class: "required" %>
+      <%= f.text_field :title, class: "title" %>
+    </div>
+    <div class="field">
+      <%= f.label :position %>
+      <%= f.number_field :position, placeholder: "ex. 5" %>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="wrap-panel-alert">
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! The title will appear at the navbar for this content. </br>
+  </div>
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! Content [ Position ] represents a non-linear integer index that decides the nav pill order. Higher values are displayed earlier.</br>
+          Notice that for each locale it's index page will always appear first.
+  </div>
+</div>

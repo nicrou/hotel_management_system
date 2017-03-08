@@ -1,0 +1,67 @@
+<table class="js-bootstrap-table" data-show-columns="true"
+                                  data-search="true"
+                                  data-show-refresh="true"
+                                  data-show-toggle="true"
+                                  data-pagination="true">
+    <thead>
+      <tr>
+          <th data-halign="center" data-align="center" data-sortable="true" >Forename</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Surname</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Role</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Email</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Date of Birth</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Country</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false"  >Province</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false"  >city</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false"  >Street</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false"  >Postal Code</th>
+          <th data-halign="center" data-align="center" data-visible="false" >Home Phone</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="true" >Mobile Phone</th>
+          <% if current_user.profile.admin == true %>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="true"  >Administrator</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="true"  >Approved</th>
+          <% end %>
+          <th data-halign="center" data-align="center" data-visible="true" >View</th>
+          <% if current_user.profile.admin == true %>
+          <th data-halign="center" data-align="center" data-visible="true" >Edit</th>
+          <th data-halign="center" data-align="center" data-visible="true" >Delete</th>
+          <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @profiles.each_with_index do |profile, index| %>
+        <tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+          <td><%= profile.forename %></td>
+          <td><%= profile.surname %></td>
+          <td><%= profile.role %></td>
+          <td><%= profile.user.email %></td>
+          <td><%= profile.date_of_birth %></td>
+          <td><%= profile.country %></td>
+          <td><%= profile.province %></td>
+          <td><%= profile.city %></td>
+          <td><%= profile.street %></td>
+          <td><%= profile.postal_code %></td>
+          <td><%= profile.home_phone %></td>
+          <td><%= profile.mobile_phone %></td>
+          <% if current_user.profile.admin == true %>
+            <% if profile.admin == true %>
+              <td><span class="text-success"><i class="fa fa-check"></i></span></td>
+            <% else %>
+              <td> - </td>
+            <% end %>
+
+            <% if profile.user.approved == true %>
+                <td><span class="text-success"><i class="fa fa-check"></i></span></td>
+            <% else %>
+                <td><span class="text-warning">Pending...</span></td>
+            <% end %>
+          <% end %>
+          <td class="show-trigger"><%= link_to profile_path(profile), remote: true do %><i class="fa fa-eye"></i><% end %></td>
+          <% if current_user.profile.admin == true %>
+            <td class="update-trigger"><%= link_to edit_user_path(profile.user), remote: true do %><i class="fa fa-pencil"></i><% end %></td>
+            <td class="delete-trigger"><%= link_to profile_path(profile), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

@@ -1,0 +1,22 @@
+<div class="fields step-3">
+  <h2 class="fs-title">Content</h2>
+  <h1 class="fs-subtitle">Edit content using the editor below.</h1>
+  <div class="fields">
+    <div class="field">
+      <%= f.text_area :content, class: "content-wysihtml5" %>
+      <em> To use an uploaded image, insert the path as it is displayed in the <%= link_to files_index_path do %><span>Files</span><% end %> panel.</em></br>
+      <em> For example assume an image is named <b>foo.jpeg</b> and it is under the <b>files</b> directory, you write: /files/foo.jpeg</em>
+    </div>
+  </div>
+</div>
+
+<hr>
+
+<div class="wrap-panel-alert">
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! wysihtml5 is an open source rich text editor based on HTML5 technology and the progressive-enhancement approach. It uses a sophisticated security concept and aims to generate fully valid HTML5 markup by preventing unmaintainable tag soups and inline styles. </br>
+          Considering the purposes of this demo it was an ideal choice, however delivering actual content may prove challenging. That being said is very easy to be replaced by another editor if so desired. </br>
+          In addition custom.scss and custom.js files may be used to further customize the views.
+  </div>
+</div>

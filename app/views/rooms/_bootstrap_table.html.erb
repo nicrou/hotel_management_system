@@ -1,0 +1,32 @@
+<table class="js-bootstrap-table" data-show-columns="true"
+                                  data-search="true"
+                                  data-show-refresh="true"
+                                  data-show-toggle="true"
+                                  data-pagination="true">
+    <thead>
+      <tr>
+          <th data-halign="center" data-align="center" data-sortable="true" >Description</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Building</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Floor</th>
+          <th data-halign="center" data-align="center" data-sortable="true" >Number</th>
+          <th data-halign="center" data-align="center" data-sortable="true" data-visible="false"  >Notes</th>
+          <th data-halign="center" data-align="center" data-visible="true" >View</th>
+          <th data-halign="center" data-align="center" data-visible="true" >Edit</th>
+          <th data-halign="center" data-align="center" data-visible="true" >Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @rooms.each_with_index do |room, index| %>
+          <tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+            <td><%= room.category.title %></td>
+            <td><%= room.building %></td>
+            <td><%= room.floor %></td>
+            <td><%= room.number %></td>
+            <td><%= room.notes %></td>
+            <td class="show-trigger"><%= link_to room_path(room), remote: true do %><i class="fa fa-eye"></i><% end %></td>
+            <td class="update-trigger"><%= link_to edit_room_path(room), remote: true do %><i class="fa fa-pencil"></i><% end %></td>
+            <td class="delete-trigger"><%= link_to room_path(room), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

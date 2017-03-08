@@ -1,0 +1,11 @@
+<div class="row files">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 file-manager">
+    <div id="dir_content">
+      <%= render partial: "directory", locals: { directory: @active_dir } %>
+    </div>
+  </div>
+</div>
+
+<div class="row download-manager">
+  <%= render partial: "dropzone" %>
+</div>

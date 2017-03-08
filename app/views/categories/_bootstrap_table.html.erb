@@ -1,0 +1,46 @@
+<table class="js-bootstrap-table" data-show-columns="true"
+                                  data-search="true"
+                                  data-show-refresh="true"
+                                  data-show-toggle="true"
+                                  data-pagination="true">
+    <thead>
+      <tr>
+        <!-- <th data-field="state" data-checkbox="true"></th> -->
+        <th data-halign="center" data-align="center" data-sortable="true" >Title</th>
+        <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Subtitle</th>
+        <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Description</th>
+        <th data-halign="center" data-align="center" data-sortable="true" >Price</th>
+        <th data-halign="center" data-align="center" data-sortable="true" >Discount</th>
+        <th data-halign="center" data-align="center" data-sortable="true" >Offer</th>
+        <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Tags</th>
+        <th data-halign="center" data-align="center" data-sortable="true" >Count</th>
+        <th data-halign="center" data-align="center" data-visible="true" >View</th>
+        <th data-halign="center" data-align="center" data-visible="true" >Edit</th>
+        <th data-halign="center" data-align="center" data-visible="true" >Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @categories.each_with_index do |category, index| %>
+          <tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+            <td><%= category.title %></td>
+            <td><%= category.subtitle %></td>
+            <td><%= category.description %></td>
+            <% if category.discount.present? && category.discount != 0 %>
+            <% n = category.price - (category.price * category.discount) / 100 %>
+              <td><span class="stack price"><%= number_to_euro(category.price) %></span></td>
+              <td><span class="discount"><%= (category.discount).round(0) %></span></td>
+              <td><span class="offer"><%= number_to_euro(n) %></span></td>
+            <% else %>
+              <td><%= number_to_euro(category.price) %></td>
+              <td></td>
+              <td></td>
+            <% end %>
+            <td><%= category.tags %></td>
+            <td><%= category.rooms_count %></td>
+            <td class="show-trigger"><%= link_to category_path(category), remote: true do %><i class="fa fa-eye"></i><% end %></td>
+            <td class="update-trigger"><%= link_to edit_category_path(category), remote: true do %><i class="fa fa-pencil"></i><% end %></td>
+            <td class="delete-trigger"><%= link_to category_path(category), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+        </tr>
+      <% end %>
+    </tbody>
+</table>

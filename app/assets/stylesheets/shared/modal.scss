@@ -1,0 +1,71 @@
+.swal2-modal {
+  padding-top: 48px;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  text-align: center;
+  max-width: 800px;
+  z-index: 9500;
+
+  .swal2-title {
+    font-size: 24px;
+  }
+
+  .swal2-content {
+    button[type="submit"] {
+    background-color: rgb(48, 133, 214);
+    border-left-color: rgb(48, 133, 214);
+    border-right-color: rgb(48, 133, 214);
+    &:hover {
+        background-color: rgb(43, 120, 193);
+      }
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .wrap-panel-alert {
+      margin: 2% 0% 2% 0%;
+      text-align: center;
+      font-size: 14px;
+      a.alert {
+        padding: 0px 4px 2px 4px;
+      }
+      a:hover {
+        text-decoration: none;
+      }
+    }
+
+    .panel-heading {
+      text-align: center;
+      i { margin-right: 10px;}
+     }
+    .panel.panel-primary .panel-heading a { color: #fff; }
+
+    .bootstrap-select.btn-group {
+      display: block;
+    .dropdown-toggle .filter-option {
+      text-align: center;
+    }
+    .dropdown-menu {
+      top: 40px;
+      }
+    }
+
+    button.dropdown-toggle {
+      margin-bottom: 12px;
+    }
+  }
+
+  .table {
+    width: 98%;
+    margin: auto;
+    font-size: 16px;
+    color: #666;
+    th {
+      font-size: 12px;
+    }
+    td {
+      font-size: 14px;
+    }
+  }
+}

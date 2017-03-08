@@ -1,0 +1,52 @@
+<table class="js-bootstrap-table" data-show-columns="true"
+                                  data-search="true"
+                                  data-show-refresh="true"
+                                  data-show-toggle="true"
+                                  data-pagination="true">
+  <thead>
+    <tr>
+      <!-- <th data-field="state" data-checkbox="true"></th> -->
+      <th data-halign="center" data-align="center" data-sortable="true" >Category</th>
+      <th data-halign="center" data-align="center" data-sortable="true" >Room</th>
+      <th data-halign="center" data-align="center" data-sortable="true" >Customer</th>
+      <th data-halign="center" data-align="center" data-sortable="true" >Start Date</th>
+      <th data-halign="center" data-align="center" data-sortable="true" >End Date</th>
+      <th data-halign="center" data-align="center" data-sortable="true" >Nights</th>
+      <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Guests</th>
+      <th data-halign="center" data-align="center" data-visible="false">Comments</th>
+      <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Quantity</th>
+      <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Discount</th>
+      <th data-halign="center" data-align="center" data-sortable="true" data-visible="false" >Price</th>
+      <th data-halign="center" data-align="center" data-sortable="true" >Total</th>
+      <th data-halign="center" data-align="center" data-visible="true" >Invoice</th>
+      <th data-halign="center" data-align="center" data-visible="true" >View</th>
+      <!--<th data-halign="center" data-align="center" data-visible="true" >Edit</th>-->
+      <th data-halign="center" data-align="center" data-visible="true" >Delete</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each_with_index do |booking, index| %>
+        <tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+          <td class="show-trigger">
+            <%= link_to category_path(booking.room.category), remote: true do %><span class="booked-room"><%= "#{booking.room.category.title} " %></span><% end %>
+          </td>
+          <td class="show-trigger">
+            <%= link_to room_path(booking.room), remote: true do %><span class="booked-room"><%= "#{booking.room.building}:#{booking.room.floor}:#{booking.room.number}" %></span><% end %>
+          </td>
+          <td><%= link_to customer_path(booking.invoice.customer), remote: true do %><!-- <i class="fa fa-id-card"> --></i><span><%= "#{booking.invoice.customer.forename} #{booking.invoice.customer.surname}" %><% end %><span></td>
+          <td><%= booking.start_date %></td>
+          <td><%= booking.start_date + booking.nights %></td>
+          <td><%= booking.nights %></td>
+          <td><%= booking.guests %></td>
+          <td><%= booking.comments %></td>
+          <td><%= booking.qty %></td>
+          <%= render partial: 'bookings_display', locals: { booking: booking } %>
+          <td class="show-trigger"><%= link_to invoice_path(booking.invoice), remote: true do %><span><%= "#{booking.invoice.code}" %></span><i class="fa fa-file-o"></i><% end %></td>
+          <td class="show-trigger"><%= link_to booking_path(booking), remote: true do %><i class="fa fa-eye"></i><% end %></td>
+          <!--<td class="update-trigger"><%= link_to edit_booking_path(booking), remote: true do %><i class="fa fa-pencil"></i><% end %></td>-->
+          <td class="delete-trigger"><%= link_to booking_path(booking), method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

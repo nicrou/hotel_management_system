@@ -1,0 +1,13 @@
+swal({
+  type: 'warning',
+  html: '<div></div>',
+  showCloseButton: true,
+  showConfirmButton: true,
+  confirmButtonText: 'Confirm'
+  })
+
+$(".swal2-modal .swal2-content").html("<%= escape_javascript(render "edit") %>");
+
+initCheckbox($(':checkbox'));
+$('.selectpicker').selectpicker();
+$('.datepicker').datepicker();

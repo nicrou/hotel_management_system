@@ -1,0 +1,29 @@
+<div class="confirmation-instructions">
+  <div class="fields">
+    <%= link_to hotel_index_path do %>
+      <span class="btn btn-default btn-home" title="Hotel Page"><i class="fa fa-home"></i></span>
+    <% end %>
+
+    <hr />
+    <h4>Resend confirmation instructions</h4>
+    <hr />
+
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+    <%= devise_error_messages! %>
+
+    <div class="input-group field">
+      <span class="input-group-addon" title="Email"><i class="fa fa-envelope"></i></span>
+      <%= f.email_field :email, autofocus: true, placeholder: "Email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="actions">
+      <%= button_tag type: 'submit', class: "btn btn-primary" do %>
+        <i class="fa fa-paper-plane" aria-hidden="true"> Resend confirmation instructions</i>
+      <% end %>
+    </div>
+    <%= render "devise/shared/links" %>
+  </div>
+  <% end %>
+</div>

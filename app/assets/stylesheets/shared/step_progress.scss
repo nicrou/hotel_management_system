@@ -1,0 +1,48 @@
+.steps {
+  /*Hide all except first fieldset*/
+  fieldset:not(:first-of-type) {
+  	display: none;
+  }
+
+  fieldset {
+  	margin: 2%;
+  }
+
+  input, textarea {
+  	border: 1px solid #ccc;
+  	border-radius: 4px;
+  	margin-bottom: 10px;
+  	width: 100%;
+  	box-sizing: border-box;
+  	font-family: montserrat;
+  	color: #2C3E50;
+  	font-size: 13px;
+  }
+}
+
+body.wysihtml5-editor {
+  background-color: #fff;
+}
+
+.help-message ol li {
+  padding-left: 10px;
+  text-align: justify;
+}
+
+.fs-title {
+	font-weight: bold;
+	font-size: 18px;
+	color: #666;
+	margin-bottom: 10px;
+}
+
+.fs-subtitle {
+	font-weight: normal;
+	font-size: 14px;
+	color: #666;
+	margin-bottom: 20px;
+}
+
+.btn.next, .btn.previous, .btn.done {
+  min-width: 100px;
+}

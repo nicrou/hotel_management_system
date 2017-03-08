@@ -1,0 +1,8 @@
+<% @control.mode == "annual"? act = "show_annual" : act = "show_monthly" %>
+<%= form_tag act, remote: true, method: :get do |f| %>
+  <%= number_field_tag :data_action, @control.data_action, class: "hidden" %>
+  <%= text_field_tag :type, @control.type, class: "hidden" %>
+  <%= date_field_tag :date, @control.date, class: "hidden" %>
+  <%= text_field_tag :mode, @control.mode, class: "hidden" %>
+  <%= text_field_tag :category, @control.category, class: "hidden" %>
+<% end %>

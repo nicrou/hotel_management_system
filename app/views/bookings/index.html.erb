@@ -1,0 +1,21 @@
+<div class="row model">
+  <%= render partial: 'bootstrap_table' %>
+</div>
+
+<div class="wrap-panel-alert">
+  <div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! When you delete a booking it is automatically removed from the associated invoice. </br>
+          However if you delete all associated bookings of an invoice, the invoice's record as well as the associated customer will remain by design. </br>
+          To completely erase everything associated with a reservation (invoice, bookings and customer) delete the invoice instead from the <%= link_to invoices_path, class: "alert alert-info" do %><span>Invoices</span><% end %> panel.
+  </div>
+  <!--<div class="alert alert-warning alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Warning! Be VERY careful when you manually edit a booking record in order to avoid overlapping dates and other similar conflicts.<br>
+    It is strongly recommended to use the automated tool in <%= link_to timetables_index_path, class: "alert alert-warning" do %><span>Timetables</span><% end %> panel for the reareangement of your bookings and not interfering manually.
+  </div>-->
+  <!--<div class="alert alert-info alert-dismissable">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    Info! The prices and discounts that are calculated and displayed with each booking are not editable and their values are assigned at the time of the reservation.
+  </div>-->
+</div>

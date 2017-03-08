@@ -1,0 +1,70 @@
+<% if @invoice.bookings.count != 0 %>
+  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-primary">
+      <div class="panel-heading" role="tab" id="info-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#info-collapse" aria-expanded="true" aria-controls="info-collapse"><i class="fa fa-info"></i>Invoice Info</a>
+      </div>
+      <div id="info-collapse" role="tabpanel" class="panel-collapse collapse in" aria-labelledby="info-heading">
+        <div class="panel-body">
+          <div class="fields">
+            <div class="field">
+              <label class="block">Is Paid</label>
+              <% if @invoice.is_paid == true %>
+                <input class="js-invoice-is-paid" type="checkbox"
+                data-off-title="No" data-on-title="Yes" data-switch-always
+                data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+                data-off-label = "No" data-on-label = "Yes" disabled checked >
+              <% else %>
+                <input class="js-invoice-is-paid" type="checkbox"
+                data-off-title="No" data-on-title="Yes" data-switch-always
+                data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+                data-off-label = "No" data-on-label = "Yes" disabled >
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading" role="tab" id="pricing-heading">
+          <a data-toggle="collapse" data-parent="#accordion" href="#pricing-collapse" aria-expanded="true" aria-controls="pricing-collapse"><i class="fa fa-eur"></i>Pricing</a>
+      </div>
+      <div id="pricing-collapse" role="tabpanel" class="panel-collapse collapse" aria-labelledby="pricing-heading">
+        <div class="panel-body">
+      		<h4 class="fs-subtitle"><%= @invoice.bookings.first.start_date.strftime("%d %B %Y") %> ~ <%= (@invoice.bookings.first.start_date + @invoice.bookings.first.nights).strftime("%d %B %Y") %> </h1>
+          <h5 class="fs-subtitle"><%= @invoice.bookings.first.nights %> nights</h2>
+          <div class="table-responsive">
+            <table class="js-bootstrap-table" data-show-columns="true" data-show-toggle="true">
+                <thead>
+                  <tr>
+                    <!-- <th data-field="state" data-checkbox="true"></th> -->
+                    <th data-halign="center" data-align="center" data-sortable="true" >Room</th>
+                    <th data-sortable="true" data-visible="false" >Qty</th>
+                    <th data-halign="center" data-align="center" data-sortable="true" >Discount</th>
+                    <th data-halign="center" data-align="center" data-sortable="true" data-visible="false">Each per Night</th>
+                    <th data-halign="center" data-align="center" data-sortable="true" >Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+        				<% @total = 0 %>
+        				<% @invoice.bookings.each_with_index do |booking, index| %>
+                  <%= render partial: 'bookings_display', locals: { booking: booking, index: index } %>
+        				<% end %>
+                 <tr></td><td></td><td></td><td></td><td></td><td><label class="total"><%= number_to_euro(@total) %></label></td></tr>
+               </tbody>
+        			</table>
+            </div>
+          <div class="fields">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <p>This invoice record has no remaining bookings. You may delete this invoice entirely but remember that the customer record that is associated with will also be removed.</p>
+<% end %>
+
+<%= javascript_tag do %>
+  invoices.initWidgets()
+<% end %>

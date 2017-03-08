@@ -1,0 +1,112 @@
+.search-bar.navbar {
+  position: relative;
+  border-color: #ddd;
+  background-color: #fff;
+  margin: auto;
+  border: none;
+  border-radius: 0px;
+  border-bottom: 1px solid #ddd;
+  text-align: center;
+
+  .container {
+    padding: 0px;
+    width: auto;
+    font-size: 0px !important;
+  }
+
+  .multi-input-group {
+    margin: 20px 0px 20px 0px;
+    * {
+      border-radius: 0px;
+      display: inline-block;
+      vertical-align: baseline;
+      text-align: center;
+    }
+    textarea {resize: none; height: 34px}
+    textarea:first-child {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    button:last-child {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    }
+    .form-control{
+      width: auto;
+    }
+
+  }
+
+  .navbar-header {
+    position: relative;
+    margin: 0 auto;
+    display: inline-block;
+    float: none;
+    //height: 108px;
+    //min-width: 300px;
+
+    .left-group { width: 139px; float: left; display: inline-block; position: relative; height: 108px;}
+    .right-group { width: 139px; float: left; display: inline-block; position: relative; height: 108px;}
+
+      textarea.datepicker.nav-control {
+      border-radius: 0px;
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      font-size: 16px;
+      resize: none;
+      padding: 8px;
+      height: 72px;
+      min-height: 72px;
+      width: 100%;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    span.btn.btn-default {
+      display: block;
+      border-radius: 0px;
+
+      position: absolute;
+      bottom: 0px;
+      height: 36px;
+      width: 100%;
+
+      i {
+        color: #999;
+      }
+    }
+
+    .start-date {
+      background-color: #337ab7;
+      border: 1px solid #2e6da4;
+      &:hover, &:focus {
+        background-color: #286090;
+        border-color: #122b40;
+      }
+    }
+    .end-date {
+      background-color: #d9534f;
+      border: 1px solid #d43f3a;
+      &:hover, &:focus {
+        background-color: #c9302c;
+        border-color: #761c19;
+      }
+    }
+  }
+
+  .confirm-booking {
+    width: 140px;
+    height: 108px;
+    float: left;
+    border-radius: 0px;
+    i {
+      display: block;
+    }
+  }
+}
+
+span.booked-room {
+  display: inline-block;
+}

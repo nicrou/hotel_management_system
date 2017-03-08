@@ -1,0 +1,10 @@
+swal({
+  type: 'success',
+  title: 'Success!',
+  html: '<%= %> has been completed.',
+  showCloseButton: true,
+  confirmButtonText:
+    '<i class="fa fa-check"></i>'
+  })
+
+$(".row").html("<%= escape_javascript(render "bookings/available_rooms_deck", locals: { description: @categories }) %>");

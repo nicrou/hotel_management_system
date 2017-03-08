@@ -1,0 +1,44 @@
+<% if params[:action] == "show" %>
+  <% title = booking.room.category.title %>
+<% else %>
+  <% title = Category.where(id: booking.room_id).first.title %>
+<% end %>
+
+<% qty = booking.qty %>
+<% n = booking.nights %>
+<% price = booking.price %>
+<% total = price * qty %>
+
+<tr id="tr-id-<%= index %>" class="tr-class-<%= index %>">
+  <td><%= title %></td>
+  <td><%= qty %></td>
+  <% if booking.discount.present? && booking.discount != 0 %>
+    <% discounted_price = price - (price * booking.discount) / 100 %>
+    <% discounted_total = discounted_price * qty %>
+
+    <td><span class="discount"> <%= (booking.discount).round(0) %></span></td>
+    <td>
+      <span class="price stack"><%= number_to_euro(price) %></span>
+      <span class="offer"><%= number_to_euro(discounted_price) %></span>
+    </td>
+    <% unless params[:action] == "show" %>
+      <td>
+        <span class="stack price"><%= number_to_euro(total) %></span>
+        <span class="offer"><%= number_to_euro(discounted_total) %></span>
+      </td>
+    <% end %>
+    <td>
+      <span class="stack price"><%= number_to_euro(total * n) %></span>
+      <span class="offer"><%= number_to_euro(discounted_total * n) %></span>
+      <% @total += discounted_total * n %>
+    </td>
+  <% else %>
+      <td></td>
+      <td><%= number_to_euro(price) %></td>
+      <% unless params[:action] == "show" %>
+        <td><%= number_to_euro(total) %></td>
+      <% end %>
+      <td><%= number_to_euro(total * n) %></td>
+      <% @total += total * n %>
+  <% end %>
+</tr>

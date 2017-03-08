@@ -1,0 +1,126 @@
+<!-- multistep form -->
+<%= form_for @invoice, method: :post, remote: true, :html => { :class => 'steps' } do |f| %>
+
+  <% start_date = @invoice.bookings.first.start_date %>
+  <% nights = @invoice.bookings.first.nights %>
+
+  <ul class="progress-indicator">
+    <li class="completed"> <span class="bubble">1</span> Step 1. </li>
+    <li> <span class="bubble">2</span> Step 2. </li>
+    <li> <span class="bubble">3</span> Step 3. </li>
+  </ul>
+
+  <% if @invoice.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@invoice.errors.count, "error") %> prohibited
+        this invoice from being saved:
+      </h2>
+      <ul>
+        <% @invoice.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  	<!-- fieldsets -->
+  	<fieldset>
+  		<h2 class="fs-title">Confirm Booking</h2>
+  		<h1 class="fs-subtitle"><%= start_date.strftime("%d %B %Y") %> ~ <%= (start_date + nights).strftime("%d %B %Y") %> </h1>
+      <h2 class="fs-subtitle"><%= nights %> nights</h2>
+      <div class="table-responsive">
+        <table class="js-bootstrap-table" data-show-columns="true" data-show-toggle="true">
+            <thead>
+              <tr>
+                <!-- <th data-field="state" data-checkbox="true"></th> -->
+                <th data-halign="center" data-align="center" data-sortable="true" >Room</th>
+                <th  data-sortable="true" >Qty</th>
+                <th data-halign="center" data-align="center" data-sortable="true" >Discount</th>
+                <th data-halign="center" data-align="center" data-sortable="true" data-visible="false">Each per Night</th>
+                <th data-halign="center" data-align="center" data-sortable="true" >Sum per Night</th>
+                <th data-halign="center" data-align="center" data-sortable="true" >Total</th>
+              </tr>
+            </thead>
+            <tbody>
+    				<% @total = 0 %>
+    				<% @invoice.bookings.each_with_index do |booking, index| %>
+                <tr class="hidden">
+                  <td>
+                    <%= f.fields_for :bookings, Booking.new do |new_booking| %>
+                    <%= new_booking.hidden_field :room_id, value: booking.room_id  %>
+                    <%= new_booking.hidden_field :qty, value: booking.qty  %>
+                    <%= new_booking.hidden_field :start_date, value: booking.start_date %>
+                    <%= new_booking.hidden_field :nights, value: booking.nights %>
+                  <% end %>
+                </td>
+              </tr>
+              <%= render partial: 'bookings_display', locals: { booking: booking, index: index } %>
+    				<% end %>
+             <tr></td><td></td><td></td><td></td><td></td><td></td><td><label class="total"><%= number_to_euro(@total) %></label></td></tr>
+           </tbody>
+    			</table>
+        </div>
+      </div>
+      <button class="btn btn-primary next" value="Next" type="button">Next <i class="fa fa-arrow-right"></i></button>
+  	</fieldset>
+  	<fieldset>
+
+  		<h2 class="fs-title">Personal Details</h2>
+      <% if @invoice.customer.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@invoice.customer.errors.count, "error") %> prohibited
+            this entry:
+          </h2>
+          <ul>
+            <% @invoice.customer.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= f.fields_for :customer, @invoice.customer do |customer_form| %>
+       <%= render partial: "customers/form", locals: { f: customer_form, customer: @invoice.customer } %>
+      <% end %>
+
+      <button class="btn btn-default previous" value="Previous" type="button"><i class="fa fa-arrow-left"></i> Previous</button>
+      <button class="btn btn-primary next" value="Next" type="button">Next <i class="fa fa-arrow-right"></i></button>
+  	</fieldset>
+  	<fieldset>
+      <% if @invoice.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@invoice.errors.count, "error") %> prohibited
+            this reservation from being saved:
+          </h2>
+          <ul>
+            <% @invoice.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+  		<h2 class="fs-title">Payment</h2>
+      <p>TODO: Connect with <a href="https://stripe.com/nl" target="_blank">Stripe</a> or some other way of payment. </p>
+         <div class="alert alert-info alert-dismissable">
+           <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+           Info! This demo sets by default the booking as unpaid as it would for in cash payments. You can manually flag it as paid from the <%= link_to invoices_path, class: "alert-info", target: "_blank" do %><span>Invoices</span><% end %> panel.
+         </div>
+       </div>
+
+      <%= f.hidden_field :is_paid, value: false %>
+      <!--<input class="js-invoice-is-paid" type="checkbox"
+                data-off-title="No" data-on-title="Yes" data-switch-always
+                data-off-active-cls="btn-warning" data-on-active-cls="btn-primary"
+                data-off-label = "No" data-on-label = "Yes" disabled >-->
+
+      <button class="btn btn-default previous" value="Previous" type="button"><i class="fa fa-arrow-left"></i> Previous</button>
+      <button id="submit" class="btn btn-primary" type="submit">Submit <i class="fa fa-check"></i></button>
+  	</fieldset>
+<% end %>
+
+<%= javascript_tag do %>
+  invoices.initWidgets();
+<% end %>
