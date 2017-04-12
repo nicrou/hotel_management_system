@@ -2,7 +2,7 @@
 window.base_uri = "";
 
 // Dummy code for displaying Readme
-$(document).ready(function(){
+/*$(document).ready(function(){
   if (localStorage.getItem('visited') == null){
   	swal({
   	  type: 'info',
@@ -16,7 +16,7 @@ $(document).ready(function(){
   	$(".swal2-modal .swal2-content").html($("#readme>div").html());
   }
   localStorage.setItem('visited', true);
-})
+})*/
 
 $(document).on('click', "li.readme" , function () {
   swal({
