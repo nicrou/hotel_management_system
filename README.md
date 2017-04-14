@@ -38,16 +38,16 @@ Notice <b> <i class="glyphicon glyphicon-user"></i> Sign Up</b> | <b><i class="g
 
 Log in as an employee and test the administrator interface. There is also a manager role with deletion provileges.
 
-New users will need approval from an admin account and since I won't be monitoring this there is no point signing up so just log in using a test user account I have set up using these credentials mail: <b>test_user@demo.com</b> and password: <b>p4$$w0rD</b>
+New users will need approval from an admin account and since I won't be monitoring this there is no point signing up so just log in as a test user I have set up using these credentials mail: <b>test_user@demo.com</b> and password: <b>p4$$w0rD</b>
 
 After you log in you can test most of the administration interface and it's functionalities.
 
 <h5><b>Just please do so responsibly and try not to break the demo so other people can use it as well. </b></h5></br>
 
-I originally used dummy data for bookings that are dated in February/March 2017.
+I originally used dummy data for bookings that are dated back in February/March 2017.
 Thus unless some user has deleted them while testing the demo, you should either visit those months in order to check out the charts, timetables etc. or create some new, current data, yourself. <br><br>
 
-Lastly It would be much appreciated it you could report to me any bugs you may find since this entire project was built in such a short time and I haven't extensively tested it.
+Lastly it would be much appreciated it you could report to me any bugs you may find since this entire project was built in such a short time and I haven't extensively tested it.
 
 ## Considerations
 
