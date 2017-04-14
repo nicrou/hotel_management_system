@@ -34,7 +34,7 @@ Notice that navigating to the hotel url while there isn't any content naturally 
 
 Other than navigating around the site and its content ( keep in mind that the site was created in about 15 minutes using only the provided tools ) you can also test reservations by creating some dummy bookings as a customer, to do that click on the <b>book now</b> link.<br><br>
 
-Notice <b> <i class="glyphicon glyphicon-user"></i> Sign Up</b> | <b><i class="glyphicon glyphicon-log-in"></i> Log In</b> and <b><i class="fa fa-book"></i></b> [ shows this readme ] buttons on the right side of the navbar. These exist only for this demo's purposes.
+Notice <b> <i class="glyphicon glyphicon-user"></i> Sign Up</b> | <b><i class="glyphicon glyphicon-log-in"></i> Log In</b> buttons on the right side of the navbar. These exist only for this demo's purposes.
 
 Log in as an employee and test the administrator interface. There is also a manager role with deletion provileges.
 
@@ -44,10 +44,8 @@ After you log in you can test most of the administration interface and it's func
 
 <h5><b>Just please do so responsibly and try not to break the demo so other people can use it as well. </b></h5></br>
 
-Create your own, test it and delete it.
-Same goes for themes, categories/rooms etc. Thank you.
-
-I understand though that there are some people who just want to see the world burn so if you visit the demo and find it in an unusable state or without any data and you are interested in testing it just mail me and I will repopulate the database with the dummy data as soon as possible.
+I originally used dummy data for bookings that are dated in February/March 2017.
+Thus unless some user has deleted them while testing the demo, you should either visit those months in order to check out the charts, timetables etc. or create some new, current data, yourself. <br><br>
 
 Lastly It would be much appreciated it you could report to me any bugs you may find since this entire project was built in such a short time and I haven't extensively tested it.
 
@@ -111,4 +109,4 @@ To be honest I have barely tested it for cross-browser compatibility but I am as
     I suppose it boils down to the various libraries I am using so if any of these does not work with some browser's versions it will naturally extend to this project.
 
 ## Contact
-For any questions you may have you can contact me at <a href="mailto:nroy.1991@hotmail.com">nroy.1991@hotmail.com</a>
+For any questions you may have you can contact me at <a href="mailto:info@nickthegeek.gr">info@nickthegeek.gr</a>
